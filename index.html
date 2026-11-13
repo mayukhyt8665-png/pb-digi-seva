@@ -3,21 +3,32 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const myPhoneDisplay = "+91 81001 77365";
-    const myPhoneHref = "tel:+918100177365";
-    const myWhatsapp = "918100177365";
-    const myEmail = "pbdigiseva@gmail.com";
-    const myLocation = "Sonarpur, Kolkata, West Bengal";
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const myPhoneDisplay = "+91 81001 77365";
+      const myPhoneHref = "tel:+918100177365";
+      const myWhatsapp = "918100177365";
+      const myEmail = "pbdigiseva@gmail.com";
+      const myLocation = "Sonarpur, Kolkata, West Bengal";
 
-    document.body.innerHTML = document.body.innerHTML
-      .replaceAll("+91 98765 43210", myPhoneDisplay)
-      .replaceAll("tel:+919876543210", myPhoneHref)
-      .replaceAll("919876543210", myWhatsapp)
-      .replaceAll("hello@pbdigiseva.in", myEmail)
-      .replaceAll("West Bengal, India", myLocation);
+      if (typeof CONFIG !== "undefined") {
+        CONFIG.phoneDisplay = myPhoneDisplay;
+        CONFIG.phoneHref = myPhoneHref;
+        CONFIG.whatsappNumber = myWhatsapp;
+        CONFIG.email = myEmail;
+        CONFIG.location = myLocation;
+      }
+
+      document.body.innerHTML = document.body.innerHTML
+        .replaceAll("+91 98765 43210", myPhoneDisplay)
+        .replaceAll("tel:+919876543210", myPhoneHref)
+        .replaceAll("919876543210", myWhatsapp)
+        .replaceAll("hello@pbdigiseva.in", myEmail)
+        .replaceAll("West Bengal, India", myLocation);
+    }, 300);
   });
 </script>
+
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
