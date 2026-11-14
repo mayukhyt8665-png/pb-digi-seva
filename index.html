@@ -1,2154 +1,848 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<script>
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const myPhoneDisplay = "+91 81001 77365";
-      const myPhoneHref = "tel:+918100177365";
-      const myWhatsapp = "918100177365";
-      const myEmail = "pbdigiseva@gmail.com";
-      const myLocation = "Sonarpur, Kolkata, West Bengal";
-
-      if (typeof CONFIG !== "undefined") {
-        CONFIG.phoneDisplay = myPhoneDisplay;
-        CONFIG.phoneHref = myPhoneHref;
-        CONFIG.whatsappNumber = myWhatsapp;
-        CONFIG.email = myEmail;
-        CONFIG.location = myLocation;
-      }
-
-      document.querySelectorAll('a[href]').forEach(a => {
-        if (a.href.includes('9876543210')) {
-          a.href = a.href.replaceAll('919876543210', myWhatsapp).replaceAll('9876543210', '8100177365');
-        }
-        if (a.href.includes('hello@pbdigiseva.in')) {
-          a.href = a.href.replaceAll('hello@pbdigiseva.in', myEmail);
-        }
-      });
-
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-      let node;
-      while ((node = walker.nextNode())) {
-        node.nodeValue = node.nodeValue
-          .replaceAll("+91 98765 43210", myPhoneDisplay)
-          .replaceAll("hello@pbdigiseva.in", myEmail)
-          .replaceAll("West Bengal, India", myLocation);
-      }
-
-      document.querySelectorAll('.reveal').forEach(el => {
-        el.classList.add('active');
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      });
-    }, 300);
-  });
-</script>
-<script>
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      if (typeof DEMO_PROJECTS === 'undefined') return;
-
-      const medicalAppPreview = (brandName, subtitle) => `
-        <div class="max-w-sm mx-auto bg-slate-50 rounded-3xl border border-slate-200 shadow-lg overflow-hidden text-left font-sans">
-          <div class="bg-white px-4 py-3 flex items-center justify-between border-b border-slate-100">
-            <div>
-              <div class="font-bold text-slate-900 text-sm">${brandName}</div>
-              <div class="text-xs font-medium text-emerald-600">${subtitle}</div>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs font-bold">📞</span>
-              <span class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-xs">👤</span>
-            </div>
-          </div>
-          <div class="p-4 space-y-4">
-            <div class="rounded-2xl p-4 text-white shadow-md" style="background: linear-gradient(135deg, #059669, #10b981);">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full mb-2">Home Service</span>
-              <h4 class="text-lg font-extrabold leading-tight">Home Blood Collection</h4>
-              <div class="inline-flex items-center gap-1.5 bg-white text-emerald-800 text-xs font-bold px-3 py-1 rounded-full mt-2">
-                <span>🕒 7:00 AM - 12:00 PM</span>
-              </div>
-              <p class="text-xs text-emerald-50 mt-2 leading-relaxed">Accurate testing from trusted diagnostic partners. Book a home visit today.</p>
-            </div>
-            <div>
-              <div class="text-xs font-bold text-slate-800 mb-2">Quick Booking</div>
-              <div class="grid grid-cols-2 gap-2.5">
-                <div class="bg-blue-50/70 border border-blue-100 rounded-2xl p-3 text-center">
-                  <div class="w-8 h-8 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-xs mb-1.5">📞</div>
-                  <div class="text-[11px] font-semibold text-slate-700">Call Desk 1</div>
-                  <div class="text-xs font-extrabold text-slate-900">+91 98300 00000</div>
-                </div>
-                <div class="bg-emerald-50/70 border border-emerald-100 rounded-2xl p-3 text-center">
-                  <div class="w-8 h-8 mx-auto rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs mb-1.5">📞</div>
-                  <div class="text-[11px] font-semibold text-slate-700">Call Desk 2</div>
-                  <div class="text-xs font-extrabold text-slate-900">+91 98300 11111</div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-800">Trusted Lab Partners</span>
-                <span class="text-[11px] font-semibold text-emerald-600">View All</span>
-              </div>
-              <div class="grid grid-cols-3 gap-2">
-                <div class="bg-white border border-slate-200 rounded-xl p-2 text-center">
-                  <div class="text-[11px] font-extrabold text-blue-700">METRO</div>
-                  <div class="text-[9px] text-slate-500">LABORATORY</div>
-                </div>
-                <div class="bg-white border border-slate-200 rounded-xl p-2 text-center">
-                  <div class="text-[11px] font-extrabold text-teal-700">CARE+</div>
-                  <div class="text-[9px] text-slate-500">DIAGNOSTICS</div>
-                </div>
-                <div class="bg-white border border-slate-200 rounded-xl p-2 text-center">
-                  <div class="text-[11px] font-extrabold text-rose-700">PRIME</div>
-                  <div class="text-[9px] text-slate-500">PATHOLOGY</div>
-                </div>
-              </div>
-            </div>
-            <div class="space-y-2.5 pt-1">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-800">Lab Tests & Packages</span>
-                <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">FEATURED</span>
-              </div>
-              <div class="bg-amber-50/60 border border-amber-200/80 rounded-2xl p-3">
-                <div class="font-bold text-slate-900 text-xs">Comprehensive Allergy Profile</div>
-                <p class="text-[11px] text-slate-600 mt-0.5">Complete screening for food, dust, pollen & environmental allergens.</p>
-                <div class="flex items-center justify-between mt-2.5">
-                  <span class="text-[10px] text-slate-500">🕒 Report in 24 Hrs</span>
-                  <span class="bg-teal-700 text-white text-[10px] font-bold px-3 py-1 rounded-lg">📞 Call to Book</span>
-                </div>
-              </div>
-              <div class="bg-amber-50/60 border border-amber-200/80 rounded-2xl p-3">
-                <div class="font-bold text-slate-900 text-xs">Complete Blood Count (CBC) & ESR</div>
-                <p class="text-[11px] text-slate-600 mt-0.5">Evaluates overall health and detects anemia & infection.</p>
-                <div class="flex items-center justify-between mt-2.5">
-                  <span class="text-[10px] text-slate-500">🕒 Report in 12 Hrs</span>
-                  <span class="bg-teal-700 text-white text-[10px] font-bold px-3 py-1 rounded-lg">📞 Call to Book</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bg-white border-t border-slate-200 px-4 py-2.5 grid grid-cols-4 text-center text-[10px] font-semibold text-slate-500">
-            <div class="text-emerald-700 font-bold">🏠<br/>Home</div>
-            <div>🧪<br/>Lab Tests</div>
-            <div>💓<br/>ECG</div>
-            <div>👤<br/>Profile</div>
-          </div>
-        </div>
-      `;
-
-      const restaurantPreview = () => `
-        <div class="max-w-sm mx-auto bg-orange-50/40 rounded-3xl border border-orange-200 shadow-lg overflow-hidden text-left font-sans">
-          <div class="bg-white px-4 py-3 flex items-center justify-between border-b border-orange-100">
-            <div>
-              <div class="font-bold text-slate-900 text-sm">Spice & Saffron Kitchen</div>
-              <div class="text-xs font-medium text-orange-600">Authentic Bengali & Mughlai Dining</div>
-            </div>
-            <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2.5 py-1 rounded-full">● Open Now</span>
-          </div>
-          <div class="p-4 space-y-4">
-            <div class="rounded-2xl p-4 text-white shadow-md" style="background: linear-gradient(135deg, #9a3412, #ea580c);">
-              <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full mb-1.5">Family Restaurant & Takeaway</span>
-              <h4 class="text-lg font-extrabold leading-tight">Freshly Cooked Royal Flavours</h4>
-              <p class="text-xs text-orange-100 mt-1">Dine-in table reservation & fast local home delivery available.</p>
-              <div class="flex gap-2 mt-3">
-                <span class="bg-white text-orange-800 text-xs font-bold px-3 py-1.5 rounded-xl">🍽️ Book a Table</span>
-                <span class="bg-amber-400 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-xl">💬 WhatsApp Order</span>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-800">Today's Chef Specials</span>
-                <span class="text-[11px] font-semibold text-orange-600">Full Menu →</span>
-              </div>
-              <div class="space-y-2.5">
-                <div class="bg-white border border-orange-100 rounded-2xl p-3 flex items-center justify-between">
-                  <div>
-                    <span class="text-[9px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">BESTSELLER</span>
-                    <div class="font-bold text-slate-900 text-xs mt-1">Royal Kolkata Mutton Biryani</div>
-                    <div class="text-[11px] text-slate-500">Served with raita & signature masala</div>
-                  </div>
-                  <div class="text-right">
-                    <div class="font-extrabold text-orange-600 text-sm">₹260</div>
-                    <span class="inline-block mt-1 bg-orange-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">Order</span>
-                  </div>
-                </div>
-                <div class="bg-white border border-orange-100 rounded-2xl p-3 flex items-center justify-between">
-                  <div>
-                    <span class="text-[9px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">PURE VEG</span>
-                    <div class="font-bold text-slate-900 text-xs mt-1">Paneer Tikka & Butter Naan Combo</div>
-                    <div class="text-[11px] text-slate-500">Charcoal grilled cottage cheese & 2 naans</div>
-                  </div>
-                  <div class="text-right">
-                    <div class="font-extrabold text-orange-600 text-sm">₹195</div>
-                    <span class="inline-block mt-1 bg-orange-600 text-white text-[10
-
-
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PB Digi Seva | Business & Single Page Website Development Agency</title>
-  <meta
-    name="description"
-    content="PB Digi Seva builds professional, mobile-responsive Business Websites (Multi-Page) and Single Page Websites for medical pharmacies, diagnostic centres, clinics, restaurants, hotels, salons, gyms, and local shops."
-  />
+  <title>PB Digi Seva | Business & Single Page Website Development</title>
+  <meta name="description" content="PB Digi Seva builds professional Business Websites and Single Page Websites for local businesses in West Bengal & India." />
 
-  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              orange: '#F97316',
+              orangeDark: '#EA580C',
+              gold: '#FBBF24',
+              cream: '#FFF8ED',
+              creamAlt: '#FEF3C7',
+              navy: '#172554',
+              navyLight: '#1E3A8A',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: #FFF8ED;
-      color: #242424;
+      color: #1E293B;
     }
-    h1, h2, h3, h4, .font-heading {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    .gradient-cta {
+      background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
     }
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+    .gradient-cta:hover {
+      background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .hero-glow {
+      background: radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.25) 0%, rgba(249, 115, 22, 0.08) 45%, rgba(255, 248, 237, 0) 75%);
+    }
+    .card-shadow {
+      box-shadow: 0 10px 30px -10px rgba(23, 37, 84, 0.08);
+    }
+    .card-shadow:hover {
+      box-shadow: 0 20px 40px -12px rgba(249, 115, 22, 0.16);
     }
   </style>
 </head>
-<body class="bg-[#FFF8ED] text-[#242424] selection:bg-[#F97316] selection:text-white overflow-x-hidden">
+<body class="antialiased selection:bg-orange-200 selection:text-brand-navy">
 
-  <!-- ========================================================================
-       1. STICKY RESPONSIVE NAVIGATION BAR
-  ========================================================================= -->
-  <header
-    id="navbar"
-    class="sticky top-0 z-40 transition-all duration-300 bg-[#FFF8ED]/95 backdrop-blur-md py-4 border-b border-orange-100"
-  >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <!-- PB Digi Seva Logo -->
-      <a href="#home" class="inline-flex items-center gap-2.5 group focus:outline-none" aria-label="PB Digi Seva Home">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#F97316] via-orange-500 to-[#FBBF24] flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform">
-          <svg viewBox="0 0 36 36" fill="none" class="w-6 h-6" aria-hidden="true">
-            <path d="M9 26V10H16.5C19.5376 10 22 12.2386 22 15C22 17.7614 19.5376 20 16.5 20H13V26H9Z" fill="#FFFFFF" />
-            <circle cx="25.5" cy="11.5" r="3" fill="#172554" />
-            <path d="M17.5 25.5L25.5 17.5M25.5 17.5H20.5M25.5 17.5V22.5" stroke="#172554" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+  <!-- Sticky Navbar -->
+  <header class="sticky top-0 z-40 bg-[#FFF8ED]/95 backdrop-blur-md border-b border-orange-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl gradient-cta flex items-center justify-center text-white font-display font-extrabold text-lg shadow-md shadow-orange-500/25">
+          PB
         </div>
-        <div class="flex flex-col">
-          <span class="font-heading font-extrabold text-xl tracking-tight leading-none text-[#172554]">
-            PB <span class="text-[#F97316]">Digi</span> Seva
-          </span>
-          <span class="text-[10px] font-semibold tracking-wider uppercase text-slate-500 mt-1">
-            Web Development Agency
-          </span>
+        <div>
+          <span class="font-display font-extrabold text-xl tracking-tight text-brand-navy">PB <span class="text-brand-orange">Digi Seva</span></span>
+          <span class="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 -mt-1">Web Development Agency</span>
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8" aria-label="Primary Navigation">
-        <a href="#home" class="text-sm font-semibold text-[#242424] hover:text-[#F97316] transition-colors">Home</a>
-        <a href="#about" class="text-sm font-semibold text-[#242424] hover:text-[#F97316] transition-colors">About</a>
-        <a href="#services" class="text-sm font-semibold text-[#242424] hover:text-[#F97316] transition-colors">Services</a>
-        <a href="#portfolio" class="text-sm font-semibold text-[#242424] hover:text-[#F97316] transition-colors">Portfolio</a>
-        <a href="#contact" class="text-sm font-semibold text-[#242424] hover:text-[#F97316] transition-colors">Contact</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+        <a href="#about" class="hover:text-brand-orange transition">About</a>
+        <a href="#services" class="hover:text-brand-orange transition">Services</a>
+        <a href="#portfolio" class="hover:text-brand-orange transition">Portfolio</a>
+        <a href="#pricing" class="hover:text-brand-orange transition">Pricing</a>
+        <a href="#contact" class="hover:text-brand-orange transition">Contact</a>
       </nav>
 
-      <!-- Desktop Quote CTA & Mobile Menu Toggle -->
       <div class="flex items-center gap-3">
-        <a
-          href="#contact"
-          class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316] to-orange-600 hover:from-orange-600 hover:to-[#172554] text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-md shadow-orange-500/20 transition-all duration-300"
-        >
-          <span>Get a Quote</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 gradient-cta text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-md shadow-orange-500/20 transition">
+          Get a Quote
         </a>
-
-        <button
-          id="open-mobile-menu"
-          type="button"
-          class="md:hidden p-2.5 rounded-xl bg-white border border-orange-200 text-[#172554] hover:bg-orange-50 transition-colors"
-          aria-label="Open Navigation Menu"
-        >
-          <i data-lucide="menu" class="w-6 h-6"></i>
+        <button id="mobile-menu-btn" aria-label="Open Menu" class="md:hidden p-2.5 rounded-xl bg-white border border-orange-200 text-brand-navy">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-orange-200 px-4 pt-3 pb-5 space-y-2.5">
+      <a href="#about" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-orange">About</a>
+      <a href="#services" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-orange">Services</a>
+      <a href="#portfolio" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-orange">Portfolio</a>
+      <a href="#pricing" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-orange">Pricing</a>
+      <a href="#contact" class="block py-2 text-sm font-semibold text-slate-700 hover:text-brand-orange">Contact</a>
+      <div class="pt-2 flex gap-2">
+        <a href="tel:+918100177365" class="flex-1 text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold">Call +91 81001 77365</a>
+        <a href="https://wa.me/918100177365" target="_blank" class="flex-1 text-center py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">WhatsApp</a>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Navigation Drawer -->
-  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden md:hidden">
-    <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-[#172554]/60 backdrop-blur-xs"></div>
-    <div class="relative ml-auto w-full max-w-xs bg-white h-full shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
-      <div>
-        <div class="flex items-center justify-between pb-5 border-b border-orange-100">
-          <span class="font-heading font-extrabold text-xl text-[#172554]">
-            PB <span class="text-[#F97316]">Digi</span> Seva
-          </span>
-          <button
-            id="close-mobile-menu"
-            type="button"
-            class="p-2 rounded-xl bg-orange-50 text-[#172554]"
-            aria-label="Close Navigation Menu"
-          >
-            <i data-lucide="x" class="w-5 h-5"></i>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden hero-glow pt-10 pb-16 sm:pt-16 sm:pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 bg-amber-100/90 border border-amber-300/70 text-brand-navy px-3.5 py-1.5 rounded-full text-xs font-bold">
+          <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
+          Grow Your Business Digitally
+        </div>
+        <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-brand-navy leading-[1.12] tracking-tight">
+          Professional Websites for <span class="text-brand-orange">Your Business.</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
+          We build fast, mobile-friendly <strong>Business Websites</strong> and <strong>Single Page Websites</strong> that help local pharmacies, clinics, restaurants, salons, and shops attract more customers online.
+        </p>
+
+        <div class="flex flex-wrap gap-3.5 pt-1">
+          <a href="#contact" class="gradient-cta text-white font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-lg shadow-orange-500/25 transition inline-flex items-center gap-2">
+            Get a Website
+            <span>→</span>
+          </a>
+          <a href="#portfolio" class="bg-white hover:bg-amber-50 text-brand-navy border border-orange-200 font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl transition">
+            View Our Work
+          </a>
+        </div>
+
+        <div class="pt-4">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2.5">Websites Tailored For Local Businesses</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-white border border-orange-200/80 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg">Medical Pharmacies</span>
+            <span class="bg-white border border-orange-200/80 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg">Diagnostic Centres</span>
+            <span class="bg-white border border-orange-200/80 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg">Clinics</span>
+            <span class="bg-white border border-orange-200/80 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg">Restaurants & Cafes</span>
+            <span class="bg-white border border-orange-200/80 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg">Salons & Gyms</span>
+            <span class="bg-white border border-orange-200/80 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg">Local Shops</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Layout Preview Switcher -->
+      <div class="lg:col-span-5">
+        <div class="bg-white rounded-3xl border border-orange-200/80 p-5 sm:p-6 card-shadow">
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Interactive Preview</span>
+            <div class="inline-flex bg-orange-50 p-1 rounded-xl border border-orange-200/60">
+              <button onclick="switchHeroPreview('multi')" id="tab-multi" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-brand-navy text-white transition">Multi-Page</button>
+              <button onclick="switchHeroPreview('single')" id="tab-single" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-brand-navy transition">Single Page</button>
+            </div>
+          </div>
+
+          <div id="preview-multi" class="bg-slate-50 rounded-2xl border border-slate-200/80 p-4 space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              </div>
+              <span class="text-[11px] font-semibold text-slate-500">www.yourbusiness.in</span>
+              <span class="text-[10px] font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">5 Pages</span>
+            </div>
+            <div class="bg-brand-navy text-white rounded-xl p-4">
+              <div class="text-xs font-bold text-brand-gold">Business Website (5 Pages)</div>
+              <div class="text-sm font-extrabold mt-1">Dedicated Pages for Every Service</div>
+              <div class="flex flex-wrap gap-1.5 mt-3 text-[10px] font-semibold">
+                <span class="bg-white/15 px-2 py-0.5 rounded">Home</span>
+                <span class="bg-white/15 px-2 py-0.5 rounded">About</span>
+                <span class="bg-white/15 px-2 py-0.5 rounded">Services</span>
+                <span class="bg-white/15 px-2 py-0.5 rounded">Gallery</span>
+                <span class="bg-white/15 px-2 py-0.5 rounded">Contact</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div class="bg-white p-2.5 rounded-xl border border-slate-200/80">
+                <div class="text-xs font-extrabold text-brand-navy">Full SEO</div>
+                <div class="text-[10px] text-slate-500">Google Ready</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-xl border border-slate-200/80">
+                <div class="text-xs font-extrabold text-brand-navy">Gallery</div>
+                <div class="text-[10px] text-slate-500">Photo Showcase</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-xl border border-slate-200/80">
+                <div class="text-xs font-extrabold text-emerald-600">WhatsApp</div>
+                <div class="text-[10px] text-slate-500">Direct Enquiry</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="preview-single" class="hidden bg-slate-50 rounded-2xl border border-slate-200/80 p-4 space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+              </div>
+              <span class="text-[11px] font-semibold text-slate-500">One-Page Scroll</span>
+              <span class="text-[10px] font-bold bg-orange-100 text-brand-orangeDark px-2 py-0.5 rounded">Fast Launch</span>
+            </div>
+            <div class="bg-gradient-to-r from-brand-orange to-amber-500 text-white rounded-xl p-4">
+              <div class="text-xs font-bold">Single Page Website</div>
+              <div class="text-sm font-extrabold mt-1">All Info & Booking on One Smooth Page</div>
+              <p class="text-[11px] text-orange-50 mt-1">Ideal for Instagram, Facebook, Google Maps & WhatsApp links.</p>
+            </div>
+            <div class="space-y-1.5 text-xs">
+              <div class="bg-white px-3 py-2 rounded-lg border border-slate-200/80 flex justify-between"><span class="font-bold text-brand-navy">01. Hero & Quick CTA</span><span class="text-slate-500">Call & WhatsApp</span></div>
+              <div class="bg-white px-3 py-2 rounded-lg border border-slate-200/80 flex justify-between"><span class="font-bold text-brand-navy">02. Services & Offers</span><span class="text-slate-500">Clear Price/List</span></div>
+              <div class="bg-white px-3 py-2 rounded-lg border border-slate-200/80 flex justify-between"><span class="font-bold text-brand-navy">03. Location & Contact</span><span class="text-slate-500">Map & Timings</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 sm:py-20 bg-white border-y border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center">
+      <div class="space-y-4">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-brand-orange">About PB Digi Seva</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-navy">Focused Exclusively on High-Impact Website Development</h2>
+        <p class="text-slate-600 leading-relaxed">
+          Instead of confusing you with complicated packages, <strong>PB Digi Seva</strong> concentrates 100% on building clean, fast, and reliable <strong>Business Websites</strong> and <strong>Single Page Websites</strong> that turn local visitors into real phone calls and WhatsApp bookings.
+        </p>
+        <div class="grid grid-cols-2 gap-4 pt-2">
+          <div class="bg-brand-cream p-4 rounded-2xl border border-orange-200/60">
+            <div class="font-display font-extrabold text-2xl text-brand-orange">2–4 Days</div>
+            <div class="text-xs font-semibold text-slate-600 mt-0.5">Fast Turnaround Delivery</div>
+          </div>
+          <div class="bg-brand-cream p-4 rounded-2xl border border-orange-200/60">
+            <div class="font-display font-extrabold text-2xl text-brand-navy">100% Mobile</div>
+            <div class="text-xs font-semibold text-slate-600 mt-0.5">Responsive on All Phones</div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-brand-navy text-white rounded-3xl p-7 sm:p-8 space-y-5 shadow-xl">
+        <h3 class="font-display font-bold text-xl text-brand-gold">Why Local Businesses Choose Us</h3>
+        <ul class="space-y-3.5 text-sm text-slate-200">
+          <li class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-brand-orange text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+            <span><strong>Direct Call & WhatsApp Integration:</strong> Customers contact your desk in one tap without filling long forms.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-brand-orange text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+            <span><strong>Transparent Affordable Pricing:</strong> Honest one-time pricing built for Indian local businesses with zero hidden fees.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-brand-orange text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+            <span><strong>Easy Future Updates:</strong> Need to update timings, phone numbers, or service lists later? We handle updates quickly.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-brand-orange">Our Core Services</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-navy mt-2">Two Focused Solutions for Every Business Stage</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Service 1 -->
+        <div class="bg-white rounded-3xl border border-orange-200/80 p-7 sm:p-8 card-shadow transition flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-orange-100 text-brand-orangeDark text-xs font-bold px-3 py-1 rounded-full mb-4">
+              Most Popular for Established Businesses
+            </div>
+            <h3 class="font-display font-extrabold text-2xl text-brand-navy">Business Website Development</h3>
+            <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">
+              A complete multi-page website (Home, About, Services/Tests, Gallery, Contact) tailored for clinics, diagnostic centres, pharmacies, restaurants, and growing companies.
+            </p>
+            <ul class="mt-5 space-y-2.5 text-sm text-slate-700">
+              <li class="flex items-center gap-2.5"><span class="text-brand-orange font-bold">✓</span> Up to 5 Dedicated Structured Pages</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-orange font-bold">✓</span> Detailed Service / Test / Menu Catalog</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-orange font-bold">✓</span> Photo Gallery & Google Maps Integration</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-orange font-bold">✓</span> Direct WhatsApp & Click-to-Call Buttons</li>
+            </ul>
+          </div>
+          <div class="mt-7 pt-5 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500">Delivery: 3–4 Days</span>
+            <a href="#contact" onclick="selectService('Business Website Development')" class="gradient-cta text-white text-sm font-bold px-5 py-2.5 rounded-xl transition">Enquire Now →</a>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-white rounded-3xl border border-orange-200/80 p-7 sm:p-8 card-shadow transition flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-full mb-4">
+              Fastest Launch for Local Shops
+            </div>
+            <h3 class="font-display font-extrabold text-2xl text-brand-navy">Single Page Website Development</h3>
+            <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">
+              A sleek, fast-loading one-page scrolling website designed for local shops, salons, gyms, and clinics to share on WhatsApp, Instagram, and Google Maps.
+            </p>
+            <ul class="mt-5 space-y-2.5 text-sm text-slate-700">
+              <li class="flex items-center gap-2.5"><span class="text-brand-orange font-bold">✓</span> High-Converting One-Page Layout</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-orange font-bold">✓</span> Key Services, Timings & Address Highlights</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-orange font-bold">✓</span> Instant Floating Call & WhatsApp Bar</li>
+              <li class="flex items-center gap-2.5"><span class="text-brand-orange font-bold">✓</span> Ultra-Fast Loading on Mobile Data</li>
+            </ul>
+          </div>
+          <div class="mt-7 pt-5 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-500">Delivery: 1–2 Days</span>
+            <a href="#contact" onclick="selectService('Single Page Website Development')" class="bg-brand-navy hover:bg-brand-navyLight text-white text-sm font-bold px-5 py-2.5 rounded-xl transition">Enquire Now →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio / Interactive Live Demos -->
+  <section id="portfolio" class="py-16 sm:py-24 bg-white border-y border-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-brand-orange">Sample Demos</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-navy mt-2">Explore Interactive Website Previews</h2>
+        <p class="text-sm text-slate-600 mt-2">Tap <strong>View Demo</strong> on any project below to preview how your customers will experience your website on mobile.</p>
+      </div>
+
+      <div id="portfolio-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-16 sm:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-brand-orange">Transparent Pricing</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-navy mt-2">Simple Packages Built for Local Businesses</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-3xl border border-orange-200 p-7 sm:p-8 card-shadow">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Starter Plan</div>
+          <h3 class="font-display font-extrabold text-2xl text-brand-navy mt-1">Single Page Website</h3>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="font-display font-extrabold text-4xl text-brand-navy">₹2,999</span>
+            <span class="text-xs font-semibold text-slate-500">/ one-time</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Free hosting link included (Custom .in/.com domain optional)</p>
+          <ul class="mt-6 space-y-3 text-sm text-slate-700">
+            <li>✓ Complete Single-Page Responsive Design</li>
+            <li>✓ Business Info, Services & Timings</li>
+            <li>✓ Direct WhatsApp & Call Now Buttons</li>
+            <li>✓ Google Maps Location Link</li>
+          </ul>
+          <a href="#contact" onclick="selectService('Single Page Website Development')" class="mt-7 block text-center w-full py-3 rounded-xl border-2 border-brand-navy text-brand-navy font-bold text-sm hover:bg-brand-navy hover:text-white transition">Choose Single Page</a>
+        </div>
+
+        <div class="bg-brand-navy text-white rounded-3xl border-2 border-brand-orange p-7 sm:p-8 shadow-xl relative">
+          <span class="absolute -top-3 right-6 bg-brand-orange text-white text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full">Best Value</span>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Complete Brand Plan</div>
+          <h3 class="font-display font-extrabold text-2xl mt-1">Business Website</h3>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="font-display font-extrabold text-4xl text-white">₹5,999</span>
+            <span class="text-xs font-semibold text-slate-300">/ one-time</span>
+          </div>
+          <p class="text-xs text-slate-300 mt-1">Ideal for clinics, labs, pharmacies & restaurants</p>
+          <ul class="mt-6 space-y-3 text-sm text-slate-200">
+            <li>✓ Multi-Page Structure (Up to 5 Pages)</li>
+            <li>✓ Detailed Test / Menu / Service Cards</li>
+            <li>✓ Photo Gallery & Partner Logos Section</li>
+            <li>✓ Priority WhatsApp Booking & SEO Setup</li>
+          </ul>
+          <a href="#contact" onclick="selectService('Business Website Development')" class="mt-7 block text-center w-full py-3 rounded-xl gradient-cta text-white font-bold text-sm shadow-lg shadow-orange-500/30 transition">Choose Business Website</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 sm:py-24 bg-white border-t border-orange-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5 space-y-6">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-brand-orange">Start Your Project</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-navy">Let's Build Your Business Website</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Fill out the quick form to send your requirements directly to our WhatsApp, or call us directly to discuss your website.
+        </p>
+
+        <div class="space-y-4 pt-2">
+          <a href="tel:+918100177365" class="flex items-center gap-4 p-4 rounded-2xl bg-brand-cream border border-orange-200/80 hover:border-brand-orange transition">
+            <div class="w-11 h-11 rounded-xl gradient-cta text-white flex items-center justify-center font-bold text-lg">📞</div>
+            <div>
+              <div class="text-xs font-bold text-slate-500">Call / WhatsApp</div>
+              <div class="font-display font-extrabold text-base text-brand-navy">+91 81001 77365</div>
+            </div>
+          </a>
+
+          <a href="mailto:pbdigiseva@gmail.com" class="flex items-center gap-4 p-4 rounded-2xl bg-brand-cream border border-orange-200/80 hover:border-brand-orange transition">
+            <div class="w-11 h-11 rounded-xl bg-brand-navy text-brand-gold flex items-center justify-center font-bold text-lg">✉️</div>
+            <div>
+              <div class="text-xs font-bold text-slate-500">Email Us</div>
+              <div class="font-display font-extrabold text-base text-brand-navy">pbdigiseva@gmail.com</div>
+            </div>
+          </a>
+
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-brand-cream border border-orange-200/80">
+            <div class="w-11 h-11 rounded-xl bg-amber-200 text-brand-navy flex items-center justify-center font-bold text-lg">📍</div>
+            <div>
+              <div class="text-xs font-bold text-slate-500">Location</div>
+              <div class="font-display font-extrabold text-base text-brand-navy">Sonarpur, Kolkata, West Bengal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <form id="enquiry-form" class="bg-brand-cream rounded-3xl border border-orange-200/90 p-6 sm:p-8 space-y-4 card-shadow">
+          <h3 class="font-display font-extrabold text-xl text-brand-navy">Send Quick Website Enquiry</h3>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Your Name *</label>
+              <input type="text" id="client-name" required placeholder="e.g. Rahul Das" class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm focus:outline-none focus:border-brand-orange" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Business Name *</label>
+              <input type="text" id="client-business" required placeholder="e.g. City Care Pharmacy" class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm focus:outline-none focus:border-brand-orange" />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Phone / WhatsApp Number *</label>
+              <input type="tel" id="client-phone" required placeholder="e.g. 98300XXXXX" class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm focus:outline-none focus:border-brand-orange" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Website Type *</label>
+              <select id="client-service" class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm focus:outline-none focus:border-brand-orange">
+                <option value="Business Website Development">Business Website Development</option>
+                <option value="Single Page Website Development">Single Page Website Development</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Business Details (Optional)</label>
+            <textarea id="client-notes" rows="3" placeholder="Tell us about your shop, clinic, or services..." class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm focus:outline-none focus:border-brand-orange"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2">
+            <span>💬 Send Enquiry via WhatsApp</span>
           </button>
-        </div>
-
-        <nav class="mt-6 flex flex-col gap-2" aria-label="Mobile Menu">
-          <a href="#home" class="mobile-nav-link px-4 py-3.5 rounded-xl text-base font-semibold text-[#172554] hover:bg-[#FFF8ED] hover:text-[#F97316] flex items-center justify-between">
-            <span>Home</span>
-            <i data-lucide="arrow-right" class="w-4 h-4 text-orange-400"></i>
-          </a>
-          <a href="#about" class="mobile-nav-link px-4 py-3.5 rounded-xl text-base font-semibold text-[#172554] hover:bg-[#FFF8ED] hover:text-[#F97316] flex items-center justify-between">
-            <span>About</span>
-            <i data-lucide="arrow-right" class="w-4 h-4 text-orange-400"></i>
-          </a>
-          <a href="#services" class="mobile-nav-link px-4 py-3.5 rounded-xl text-base font-semibold text-[#172554] hover:bg-[#FFF8ED] hover:text-[#F97316] flex items-center justify-between">
-            <span>Services</span>
-            <i data-lucide="arrow-right" class="w-4 h-4 text-orange-400"></i>
-          </a>
-          <a href="#portfolio" class="mobile-nav-link px-4 py-3.5 rounded-xl text-base font-semibold text-[#172554] hover:bg-[#FFF8ED] hover:text-[#F97316] flex items-center justify-between">
-            <span>Portfolio</span>
-            <i data-lucide="arrow-right" class="w-4 h-4 text-orange-400"></i>
-          </a>
-          <a href="#contact" class="mobile-nav-link px-4 py-3.5 rounded-xl text-base font-semibold text-[#172554] hover:bg-[#FFF8ED] hover:text-[#F97316] flex items-center justify-between">
-            <span>Contact</span>
-            <i data-lucide="arrow-right" class="w-4 h-4 text-orange-400"></i>
-          </a>
-        </nav>
-      </div>
-
-      <div class="pt-6 border-t border-orange-100 space-y-3">
-        <a
-          data-config-phone-href
-          href="tel:+919876543210"
-          class="w-full py-3.5 px-5 rounded-xl bg-[#172554] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md"
-        >
-          <i data-lucide="phone" class="w-4 h-4 text-[#FBBF24]"></i>
-          <span>Call <span data-config-phone-text>+91 98765 43210</span></span>
-        </a>
-        <a
-          data-config-wa-default
-          href="https://wa.me/919876543210"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-full py-3.5 px-5 rounded-xl bg-emerald-600 text-white font-bold text-sm flex items-center justify-center gap-2"
-        >
-          <i data-lucide="message-circle" class="w-4 h-4"></i>
-          <span>WhatsApp Enquiry</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================
-       2. HERO SECTION
-  ========================================================================= -->
-  <section id="home" class="relative pt-10 pb-16 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28 overflow-hidden">
-    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#FBBF24]/25 to-[#F97316]/15 blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-0 -left-24 w-80 h-80 rounded-full bg-orange-300/15 blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Left Copy -->
-        <div class="lg:col-span-6 text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-orange-200 shadow-xs mb-6">
-            <span class="w-2 h-2 rounded-full bg-[#F97316]"></span>
-            <span class="text-xs sm:text-sm font-bold text-[#172554]">Grow Your Business Digitally.</span>
-          </div>
-
-          <h1 class="font-heading text-3xl sm:text-5xl lg:text-[3.35rem] font-extrabold text-[#172554] leading-[1.15] tracking-tight">
-            Professional Websites for
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F97316] via-orange-500 to-[#FBBF24]">
-              Your Business.
-            </span>
-          </h1>
-
-          <p class="mt-5 text-base sm:text-lg text-[#242424]/85 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            We build beautiful, responsive websites that help local businesses establish their online presence.
-          </p>
-
-          <!-- Hero Buttons -->
-          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <a
-              href="#contact"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#F97316] to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-base px-7 py-4 rounded-2xl shadow-lg shadow-orange-500/25 hover:-translate-y-0.5 transition-all duration-300"
-            >
-              <span>Get a Website</span>
-              <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </a>
-
-            <a
-              href="#portfolio"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-orange-50 text-[#172554] font-bold text-base px-7 py-4 rounded-2xl border-2 border-[#172554]/15 hover:border-[#F97316] transition-all duration-300"
-            >
-              <span>View Our Work</span>
-            </a>
-          </div>
-
-          <!-- Target Businesses -->
-          <div class="mt-9 pt-6 border-t border-orange-200/80">
-            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">
-              Websites Tailored For Local Businesses
-            </p>
-            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
-              <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white text-[#172554] border border-orange-200/80">Medical Pharmacies</span>
-              <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white text-[#172554] border border-orange-200/80">Diagnostic Centres</span>
-              <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white text-[#172554] border border-orange-200/80">Clinics</span>
-              <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white text-[#172554] border border-orange-200/80">Restaurants &amp; Hotels</span>
-              <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white text-[#172554] border border-orange-200/80">Salons &amp; Gyms</span>
-              <span class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white text-[#172554] border border-orange-200/80">Local Shops</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Interactive UI Mockup Card -->
-        <div class="lg:col-span-6">
-          <div class="max-w-xl mx-auto bg-white rounded-3xl p-5 sm:p-6 shadow-2xl shadow-orange-950/10 border border-orange-100">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
-              <span class="text-xs font-extrabold uppercase tracking-wider text-[#172554]">
-                Interactive Layout Preview
-              </span>
-              <div class="inline-flex rounded-xl bg-[#FFF8ED] p-1 border border-orange-200">
-                <button
-                  id="tab-multipage"
-                  type="button"
-                  onclick="switchHeroTab('multipage')"
-                  class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#172554] text-white shadow-xs"
-                >
-                  Multi-Page Site
-                </button>
-                <button
-                  id="tab-singlepage"
-                  type="button"
-                  onclick="switchHeroTab('singlepage')"
-                  class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-[#172554]"
-                >
-                  Single Page Site
-                </button>
-              </div>
-            </div>
-
-            <!-- Browser Frame -->
-            <div class="rounded-2xl border border-slate-200 overflow-hidden bg-[#FFF8ED]/60">
-              <div class="bg-[#172554] px-4 py-2.5 flex items-center justify-between">
-                <div class="flex items-center gap-1.5">
-                  <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-[#FBBF24]"></span>
-                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                </div>
-                <span class="text-[11px] font-medium text-slate-200">www.yourbusiness.in</span>
-                <span class="text-[10px] font-bold bg-[#F97316] text-white px-2 py-0.5 rounded-md">Mobile Ready</span>
-              </div>
-
-              <!-- Multi-Page Preview Content -->
-              <div id="hero-panel-multipage" class="p-5">
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-orange-200/70">
-                  <span class="font-heading font-extrabold text-sm text-[#172554]">Business Website (5 Pages)</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#F97316] text-white">Home</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-white text-[#172554] border border-orange-200">About</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-white text-[#172554] border border-orange-200">Services</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-white text-[#172554] border border-orange-200">Gallery</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-white text-[#172554] border border-orange-200">Contact</span>
-                  </div>
-                </div>
-                <div class="rounded-xl bg-white p-4 border border-orange-100 shadow-2xs">
-                  <h3 class="font-heading font-extrabold text-base text-[#172554]">
-                    Dedicated Pages for Every Part of Your Business
-                  </h3>
-                  <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                    Organize your business story, detailed service list, photo gallery, and direct contact map across clean, easy-to-navigate pages.
-                  </p>
-                  <div class="mt-4 grid grid-cols-3 gap-2">
-                    <div class="p-2.5 rounded-lg bg-[#FFF8ED] text-center">
-                      <div class="text-xs font-extrabold text-[#172554]">5 Pages</div>
-                      <div class="text-[10px] text-slate-500">Full structure</div>
-                    </div>
-                    <div class="p-2.5 rounded-lg bg-[#FFF8ED] text-center">
-                      <div class="text-xs font-extrabold text-[#172554]">Gallery</div>
-                      <div class="text-[10px] text-slate-500">Photo showcase</div>
-                    </div>
-                    <div class="p-2.5 rounded-lg bg-[#FFF8ED] text-center">
-                      <div class="text-xs font-extrabold text-[#172554]">WhatsApp</div>
-                      <div class="text-[10px] text-slate-500">Direct enquiry</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Single Page Preview Content -->
-              <div id="hero-panel-singlepage" class="p-5 hidden">
-                <div class="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-orange-200/70">
-                  <span class="font-heading font-extrabold text-sm text-[#172554]">Single Page Website (Smooth Scroll)</span>
-                  <span class="text-[10px] font-bold bg-[#FBBF24] text-[#172554] px-2.5 py-0.5 rounded-full">One-Page Flow</span>
-                </div>
-                <div class="rounded-xl bg-white p-4 border border-orange-100 shadow-2xs space-y-2.5">
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-[#FFF8ED] border border-orange-200/60">
-                    <span class="text-xs font-bold text-[#172554]">01. Hero &amp; Quick CTA</span>
-                    <span class="text-[11px] text-slate-600">Instant Call &amp; WhatsApp buttons</span>
-                  </div>
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-[#FFF8ED] border border-orange-200/60">
-                    <span class="text-xs font-bold text-[#172554]">02. About &amp; Services</span>
-                    <span class="text-[11px] text-slate-600">All offerings on one smooth scroll</span>
-                  </div>
-                  <div class="flex items-center justify-between p-2.5 rounded-lg bg-[#FFF8ED] border border-orange-200/60">
-                    <span class="text-xs font-bold text-[#172554]">03. Location &amp; Contact</span>
-                    <span class="text-[11px] text-slate-600">Timings, map &amp; enquiry form</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- ========================================================================
-       3. ABOUT PB DIGI SEVA
-  ========================================================================= -->
-  <section id="about" class="py-16 sm:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-5">
-          <div class="rounded-3xl bg-gradient-to-br from-[#172554] via-blue-950 to-[#172554] p-8 sm:p-10 text-white shadow-2xl relative overflow-hidden">
-            <div class="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-[#F97316]/25 blur-2xl"></div>
-            <span class="inline-block px-3.5 py-1 rounded-full bg-[#F97316]/20 border border-[#F97316]/40 text-[#FBBF24] text-xs font-bold uppercase tracking-wider mb-4">
-              Dedicated Web Specialists
-            </span>
-            <h3 class="font-heading text-2xl sm:text-3xl font-extrabold leading-snug">
-              Focused Exclusively on Website Development
-            </h3>
-            <p class="mt-4 text-sm sm:text-base text-slate-200 leading-relaxed">
-              PB Digi Seva concentrates 100% on crafting clean, dependable <strong class="text-white">Business Websites</strong> and <strong class="text-white">Single Page Websites</strong> that help local enterprises earn customer trust online.
-            </p>
-            <div class="mt-7 space-y-3">
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-[#F97316] flex items-center justify-center shrink-0">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
-                </div>
-                <span class="text-sm font-medium text-white">Mobile-First Design for Smartphone Visitors</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-[#F97316] flex items-center justify-center shrink-0">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
-                </div>
-                <span class="text-sm font-medium text-white">One-Tap WhatsApp &amp; Phone Call Integration</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-6 h-6 rounded-full bg-[#F97316] flex items-center justify-center shrink-0">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
-                </div>
-                <span class="text-sm font-medium text-white">Clear Guidance on Domain &amp; Hosting Setup</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-7">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-[#F97316]">About PB Digi Seva</span>
-          <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#172554] mt-2">
-            Helping Local Businesses Establish Their Online Presence
-          </h2>
-          <p class="mt-5 text-base sm:text-lg text-[#242424]/90 leading-relaxed">
-            PB Digi Seva is a dedicated website development service provider supporting Medical Pharmacies, Diagnostic Centres, Clinics, Restaurants, Hotels, Salons, Gyms, Local Shops, and Small Businesses.
-          </p>
-          <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
-            When local customers look up your services on their phones, a clean and informative website gives them instant confidence in your offerings, timings, and location—and makes reaching you effortless.
-          </p>
-
-          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="p-5 rounded-2xl bg-[#FFF8ED] border border-orange-200/80">
-              <h4 class="font-heading font-bold text-base text-[#172554]">Multi-Page Business Websites</h4>
-              <p class="text-sm text-slate-600 mt-1.5">
-                Complete Home, About, Services, Gallery, and Contact pages for structured business presentation.
-              </p>
-            </div>
-            <div class="p-5 rounded-2xl bg-[#FFF8ED] border border-orange-200/80">
-              <h4 class="font-heading font-bold text-base text-[#172554]">Single Page Websites</h4>
-              <p class="text-sm text-slate-600 mt-1.5">
-                Fast, smooth-scrolling one-page websites designed for quick mobile reading and immediate enquiries.
-              </p>
-            </div>
-          </div>
-        </div>
+  <!-- Footer -->
+  <footer class="bg-brand-navy text-white pt-12 pb-24 sm:pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-white/10">
+      <div class="space-y-3">
+        <div class="font-display font-extrabold text-xl">PB <span class="text-brand-orange">Digi Seva</span></div>
+        <p class="text-xs text-slate-300 leading-relaxed">Grow Your Business Digitally. Modern Business Websites & Single Page Websites for local businesses across West Bengal & India.</p>
+      </div>
+      <div>
+        <div class="text-xs font-extrabold uppercase tracking-wider text-brand-gold mb-3">Quick Links</div>
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li><a href="#about" class="hover:text-white">About Us</a></li>
+          <li><a href="#services" class="hover:text-white">Services</a></li>
+          <li><a href="#portfolio" class="hover:text-white">Portfolio Demos</a></li>
+          <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs font-extrabold uppercase tracking-wider text-brand-gold mb-3">Our Services</div>
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li>Business Website Development</li>
+          <li>Single Page Website Development</li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs font-extrabold uppercase tracking-wider text-brand-gold mb-3">Contact</div>
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li>📞 +91 81001 77365</li>
+          <li>✉️ pbdigiseva@gmail.com</li>
+          <li>📍 Sonarpur, Kolkata, West Bengal</li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- ========================================================================
-       4. OUR TWO SERVICES ONLY
-  ========================================================================= -->
-  <section id="services" class="py-16 sm:py-24 bg-[#FFF8ED]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal text-center max-w-3xl mx-auto">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-[#F97316]">Our Specialized Services</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#172554] mt-2">
-          Two Focused Website Solutions
-        </h2>
-        <p class="mt-4 text-base text-slate-600">
-          We offer exclusively two website development options so you can select the exact format that fits your business.
-        </p>
-      </div>
-
-      <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        <!-- SERVICE 1: BUSINESS WEBSITE DEVELOPMENT -->
-        <div class="reveal bg-white rounded-3xl p-7 sm:p-9 shadow-sm hover:shadow-xl hover:shadow-orange-950/10 border border-orange-100 hover:border-[#F97316]/60 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <!-- Custom SVG Illustration -->
-            <svg viewBox="0 0 280 130" fill="none" class="w-full h-32 rounded-xl mb-6" aria-label="Multi-page Business Website Illustration">
-              <rect width="280" height="130" rx="14" fill="#FFF8ED" />
-              <rect x="44" y="14" width="192" height="92" rx="10" fill="#FDE68A" />
-              <rect x="34" y="22" width="212" height="92" rx="10" fill="#FDBA74" />
-              <rect x="24" y="30" width="232" height="88" rx="10" fill="#FFFFFF" stroke="#172554" stroke-width="2" />
-              <rect x="24" y="30" width="232" height="20" rx="8" fill="#172554" />
-              <circle cx="36" cy="40" r="3" fill="#F97316" />
-              <circle cx="45" cy="40" r="3" fill="#FBBF24" />
-              <rect x="85" y="36" width="24" height="8" rx="4" fill="#F97316" />
-              <rect x="114" y="36" width="24" height="8" rx="4" fill="#334155" />
-              <rect x="143" y="36" width="28" height="8" rx="4" fill="#334155" />
-              <rect x="176" y="36" width="26" height="8" rx="4" fill="#334155" />
-              <rect x="207" y="36" width="28" height="8" rx="4" fill="#334155" />
-              <rect x="38" y="60" width="95" height="12" rx="4" fill="#172554" />
-              <rect x="38" y="77" width="120" height="7" rx="3.5" fill="#CBD5E1" />
-              <rect x="38" y="88" width="100" height="7" rx="3.5" fill="#CBD5E1" />
-              <rect x="38" y="100" width="54" height="10" rx="5" fill="#F97316" />
-              <rect x="174" y="60" width="68" height="48" rx="8" fill="#FFEDD5" />
-              <circle cx="208" cy="84" r="12" fill="#F97316" />
-            </svg>
-
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#172554] to-blue-900 text-white flex items-center justify-center shadow-sm shrink-0">
-                <i data-lucide="globe" class="w-5 h-5"></i>
-              </div>
-              <span class="text-xs font-extrabold uppercase tracking-wider text-[#F97316]">Service 01 • Multi-Page</span>
-            </div>
-
-            <h3 class="font-heading text-2xl font-extrabold text-[#172554]">
-              Business Website Development
-            </h3>
-
-            <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-              Multi-page websites featuring dedicated <strong>Home, About, Services, Gallery, and Contact</strong> pages—ideal for clinics, diagnostic centres, pharmacies, restaurants, hotels, and growing businesses.
-            </p>
-
-            <div class="mt-6 pt-5 border-t border-slate-100">
-              <div class="text-xs font-extrabold uppercase tracking-wider text-[#172554] mb-3">
-                Included Core Pages:
-              </div>
-              <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>Home Page</strong> — Strong welcome banner &amp; quick call-to-action</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>About Page</strong> — Your business story, values &amp; credibility</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>Services Page</strong> — Detailed breakdown of your offerings</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>Gallery Page</strong> — Visual showcase of your facility or work</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>Contact Page</strong> — Enquiry form, WhatsApp &amp; location map</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="mt-8 pt-4">
-            <button
-              type="button"
-              onclick="openServiceModal('business')"
-              class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-gradient-to-r from-[#F97316] to-orange-600 hover:from-orange-600 hover:to-[#172554] text-white font-bold text-sm shadow-md transition-all duration-300"
-            >
-              <span>Learn More</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- SERVICE 2: SINGLE PAGE WEBSITE DEVELOPMENT -->
-        <div class="reveal bg-white rounded-3xl p-7 sm:p-9 shadow-sm hover:shadow-xl hover:shadow-orange-950/10 border border-orange-100 hover:border-[#F97316]/60 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <!-- Custom SVG Illustration -->
-            <svg viewBox="0 0 280 130" fill="none" class="w-full h-32 rounded-xl mb-6" aria-label="Single Page Website Illustration">
-              <rect width="280" height="130" rx="14" fill="#FFF8ED" />
-              <rect x="54" y="12" width="172" height="106" rx="12" fill="#FFFFFF" stroke="#F97316" stroke-width="2" />
-              <rect x="54" y="12" width="172" height="16" rx="8" fill="#F97316" />
-              <circle cx="66" cy="20" r="2.5" fill="#FFFFFF" />
-              <circle cx="74" cy="20" r="2.5" fill="#FBBF24" />
-              <rect x="68" y="34" width="132" height="20" rx="5" fill="#172554" />
-              <rect x="76" y="40" width="68" height="8" rx="4" fill="#FBBF24" />
-              <rect x="68" y="59" width="132" height="18" rx="5" fill="#FFEDD5" />
-              <rect x="76" y="65" width="84" height="6" rx="3" fill="#F97316" />
-              <rect x="68" y="82" width="132" height="26" rx="5" fill="#F8FAFC" stroke="#E2E8F0" />
-              <rect x="76" y="89" width="52" height="12" rx="4" fill="#172554" />
-              <rect x="134" y="89" width="58" height="12" rx="4" fill="#10B981" />
-              <rect x="208" y="34" width="6" height="74" rx="3" fill="#FED7AA" />
-              <rect x="208" y="46" width="6" height="26" rx="3" fill="#F97316" />
-            </svg>
-
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#F97316] to-orange-600 text-white flex items-center justify-center shadow-sm shrink-0">
-                <i data-lucide="file-text" class="w-5 h-5"></i>
-              </div>
-              <span class="text-xs font-extrabold uppercase tracking-wider text-[#F97316]">Service 02 • One-Page</span>
-            </div>
-
-            <h3 class="font-heading text-2xl font-extrabold text-[#172554]">
-              Single Page Website Development
-            </h3>
-
-            <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-              One-page websites that present all important business information in <strong>one smooth scrolling experience</strong>—perfect for salons, gyms, local shops, clinics, and small businesses.
-            </p>
-
-            <div class="mt-6 pt-5 border-t border-slate-100">
-              <div class="text-xs font-extrabold uppercase tracking-wider text-[#172554] mb-3">
-                Included Smooth-Scroll Sections:
-              </div>
-              <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>Hero Banner</strong> — Clear headline &amp; instant contact buttons</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>About Section</strong> — Concise introduction to your business</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>Services Overview</strong> — Scannable cards of your key services</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>Timings &amp; Location</strong> — Opening hours &amp; address highlights</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-                  <span><strong>Direct Contact &amp; WhatsApp</strong> — Quick enquiry &amp; one-tap chat</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="mt-8 pt-4">
-            <button
-              type="button"
-              onclick="openServiceModal('single')"
-              class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-gradient-to-r from-[#F97316] to-orange-600 hover:from-orange-600 hover:to-[#172554] text-white font-bold text-sm shadow-md transition-all duration-300"
-            >
-              <span>Learn More</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       5. PORTFOLIO SECTION (6 DEMO PROJECTS CLEARLY LABELED)
-  ========================================================================= -->
-  <section id="portfolio" class="py-16 sm:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal text-center max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-950 text-xs font-extrabold uppercase tracking-wider mb-3">
-          <i data-lucide="eye" class="w-3.5 h-3.5 text-[#F97316]"></i>
-          <span>Demo Projects Showcase</span>
-        </div>
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#172554]">
-          Sample Website Previews
-        </h2>
-        <p class="mt-4 text-base text-slate-600">
-          Explore our demonstration website concepts created for local business industries. Every project below is clearly labeled as a <strong>Demo Project</strong>.
-        </p>
-      </div>
-
-      <div id="portfolio-grid" class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       6. WHY CHOOSE PB DIGI SEVA
-  ========================================================================= -->
-  <section class="py-16 sm:py-24 bg-[#172554] text-white relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-[#F97316]/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="reveal text-center max-w-3xl mx-auto">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-[#FBBF24]">Why Work With Us</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mt-2">
-          Why Choose PB Digi Seva
-        </h2>
-        <p class="mt-4 text-base text-slate-300">
-          Clean layouts, mobile responsiveness, fast load speeds, and dedicated support built for local business growth.
-        </p>
-      </div>
-
-      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="reveal p-6 sm:p-7 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#FBBF24]/50 transition-all">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F97316] to-[#FBBF24] text-[#172554] flex items-center justify-center mb-5 shadow-md">
-            <i data-lucide="sparkles" class="w-6 h-6"></i>
-          </div>
-          <h3 class="font-heading text-lg font-bold text-white">Professional Design</h3>
-          <p class="mt-2.5 text-sm text-slate-300 leading-relaxed">
-            Clean, trustworthy visual presentation that helps local businesses make a strong first impression online.
-          </p>
-        </div>
-
-        <div class="reveal p-6 sm:p-7 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#FBBF24]/50 transition-all">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F97316] to-[#FBBF24] text-[#172554] flex items-center justify-center mb-5 shadow-md">
-            <i data-lucide="smartphone" class="w-6 h-6"></i>
-          </div>
-          <h3 class="font-heading text-lg font-bold text-white">Mobile Responsive</h3>
-          <p class="mt-2.5 text-sm text-slate-300 leading-relaxed">
-            Built mobile-first so your website looks sharp and works effortlessly on smartphones, tablets, and desktops.
-          </p>
-        </div>
-
-        <div class="reveal p-6 sm:p-7 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#FBBF24]/50 transition-all">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F97316] to-[#FBBF24] text-[#172554] flex items-center justify-center mb-5 shadow-md">
-            <i data-lucide="zap" class="w-6 h-6"></i>
-          </div>
-          <h3 class="font-heading text-lg font-bold text-white">Fast Loading</h3>
-          <p class="mt-2.5 text-sm text-slate-300 leading-relaxed">
-            Lightweight, clean structure ensures quick page loads even on standard mobile internet connections.
-          </p>
-        </div>
-
-        <div class="reveal p-6 sm:p-7 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#FBBF24]/50 transition-all">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F97316] to-[#FBBF24] text-[#172554] flex items-center justify-center mb-5 shadow-md">
-            <i data-lucide="layout" class="w-6 h-6"></i>
-          </div>
-          <h3 class="font-heading text-lg font-bold text-white">Modern Layout</h3>
-          <p class="mt-2.5 text-sm text-slate-300 leading-relaxed">
-            Structured typography, balanced spacing, and clear navigation that guide visitors straight to your services.
-          </p>
-        </div>
-
-        <div class="reveal p-6 sm:p-7 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#FBBF24]/50 transition-all">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F97316] to-[#FBBF24] text-[#172554] flex items-center justify-center mb-5 shadow-md">
-            <i data-lucide="wallet" class="w-6 h-6"></i>
-          </div>
-          <h3 class="font-heading text-lg font-bold text-white">Affordable Development</h3>
-          <p class="mt-2.5 text-sm text-slate-300 leading-relaxed">
-            Practical website packages tailored to fit the budgets of local shops, clinics, and small businesses.
-          </p>
-        </div>
-
-        <div class="reveal p-6 sm:p-7 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#FBBF24]/50 transition-all">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F97316] to-[#FBBF24] text-[#172554] flex items-center justify-center mb-5 shadow-md">
-            <i data-lucide="headphones" class="w-6 h-6"></i>
-          </div>
-          <h3 class="font-heading text-lg font-bold text-white">Customer Support</h3>
-          <p class="mt-2.5 text-sm text-slate-300 leading-relaxed">
-            Clear, friendly guidance from initial requirement discussion through launch and post-launch updates.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       7. OUR WORKING PROCESS (5 STEPS)
-  ========================================================================= -->
-  <section class="py-16 sm:py-24 bg-[#FFF8ED]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal text-center max-w-3xl mx-auto">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-[#F97316]">Step-by-Step Workflow</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#172554] mt-2">
-          Our Working Process
-        </h2>
-        <p class="mt-4 text-base text-slate-600">
-          A transparent 5-step process from requirement discussion to launching your website live.
-        </p>
-      </div>
-
-      <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-        <div class="reveal bg-white rounded-2xl p-6 border border-orange-100 shadow-sm hover:shadow-lg transition-all flex flex-col items-center text-center">
-          <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F97316] to-orange-600 text-white flex items-center justify-center shadow-md mb-4">
-            <i data-lucide="compass" class="w-6 h-6"></i>
-            <span class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#172554] text-[#FBBF24] text-[11px] font-extrabold flex items-center justify-center border-2 border-white">01</span>
-          </div>
-          <h3 class="font-heading text-base font-bold text-[#172554]">Requirement Discussion</h3>
-          <p class="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-            We discuss your business, goals, and whether a Multi-Page or Single Page website suits you best.
-          </p>
-        </div>
-
-        <div class="reveal bg-white rounded-2xl p-6 border border-orange-100 shadow-sm hover:shadow-lg transition-all flex flex-col items-center text-center">
-          <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F97316] to-orange-600 text-white flex items-center justify-center shadow-md mb-4">
-            <i data-lucide="layout" class="w-6 h-6"></i>
-            <span class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#172554] text-[#FBBF24] text-[11px] font-extrabold flex items-center justify-center border-2 border-white">02</span>
-          </div>
-          <h3 class="font-heading text-base font-bold text-[#172554]">Design</h3>
-          <p class="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-            We structure your layout, color palette, and mobile-first user flow tailored to your brand.
-          </p>
-        </div>
-
-        <div class="reveal bg-white rounded-2xl p-6 border border-orange-100 shadow-sm hover:shadow-lg transition-all flex flex-col items-center text-center">
-          <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F97316] to-orange-600 text-white flex items-center justify-center shadow-md mb-4">
-            <i data-lucide="code-2" class="w-6 h-6"></i>
-            <span class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#172554] text-[#FBBF24] text-[11px] font-extrabold flex items-center justify-center border-2 border-white">03</span>
-          </div>
-          <h3 class="font-heading text-base font-bold text-[#172554]">Development</h3>
-          <p class="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-            We build your responsive website with clean code, fast speed, and WhatsApp enquiry integration.
-          </p>
-        </div>
-
-        <div class="reveal bg-white rounded-2xl p-6 border border-orange-100 shadow-sm hover:shadow-lg transition-all flex flex-col items-center text-center">
-          <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F97316] to-orange-600 text-white flex items-center justify-center shadow-md mb-4">
-            <i data-lucide="flask-conical" class="w-6 h-6"></i>
-            <span class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#172554] text-[#FBBF24] text-[11px] font-extrabold flex items-center justify-center border-2 border-white">04</span>
-          </div>
-          <h3 class="font-heading text-base font-bold text-[#172554]">Testing</h3>
-          <p class="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-            We verify all links, buttons, forms, and layouts across mobile phones and desktop screens.
-          </p>
-        </div>
-
-        <div class="reveal bg-white rounded-2xl p-6 border border-orange-100 shadow-sm hover:shadow-lg transition-all flex flex-col items-center text-center">
-          <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F97316] to-orange-600 text-white flex items-center justify-center shadow-md mb-4">
-            <i data-lucide="rocket" class="w-6 h-6"></i>
-            <span class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#172554] text-[#FBBF24] text-[11px] font-extrabold flex items-center justify-center border-2 border-white">05</span>
-          </div>
-          <h3 class="font-heading text-base font-bold text-[#172554]">Website Launch</h3>
-          <p class="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
-            We publish your website live on your domain and hosting so customers can visit right away.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       8. PRICING PACKAGES (TWO PACKAGES - REQUEST A QUOTE)
-  ========================================================================= -->
-  <section id="pricing" class="py-16 sm:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal text-center max-w-3xl mx-auto">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-[#F97316]">Website Packages</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#172554] mt-2">
-          Choose the Right Website Package
-        </h2>
-        <p class="mt-4 text-base text-slate-600">
-          Choose between our Multi-Page Business Website and One-Page Single Page Website. Final pricing depends on your specific business content and project requirements.
-        </p>
-      </div>
-
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
-        <!-- Package 1: Business Website -->
-        <div class="reveal rounded-3xl p-7 sm:p-9 bg-[#172554] text-white shadow-2xl shadow-blue-950/20 ring-4 ring-[#F97316]/30 flex flex-col justify-between">
-          <div>
-            <span class="inline-block text-xs font-extrabold uppercase tracking-wider px-3.5 py-1 rounded-full mb-4 bg-[#F97316] text-white">
-              Multi-Page Website
-            </span>
-            <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-white">Business Website</h3>
-            <p class="mt-2.5 text-sm text-slate-300 leading-relaxed">
-              Complete multi-page presence for clinics, pharmacies, diagnostic centres, restaurants, hotels &amp; growing businesses.
-            </p>
-
-            <div class="my-6 p-4 rounded-2xl border bg-white/10 border-white/15">
-              <div class="font-heading text-2xl font-extrabold text-[#FBBF24]">Request a Quote</div>
-              <p class="text-xs mt-1 text-slate-300">Customized estimate based on your project requirements</p>
-            </div>
-
-            <ul class="space-y-3 text-sm text-slate-100">
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5"></i>
-                <span>Home, About, Services, Gallery &amp; Contact Pages</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5"></i>
-                <span>Mobile-First Responsive Design</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5"></i>
-                <span>Direct WhatsApp &amp; Click-to-Call Integration</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5"></i>
-                <span>Interactive Enquiry Form &amp; Location Map</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5"></i>
-                <span>Domain &amp; Hosting Deployment Guidance</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-8 pt-4">
-            <button
-              type="button"
-              onclick="selectPackage('Business Website Development (Multi-Page)', 'Hello PB Digi Seva, I would like to request a quote for a Business Website (Multi-Page).')"
-              class="w-full py-4 px-6 rounded-xl font-bold text-sm inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F97316] to-orange-500 hover:from-orange-500 hover:to-[#FBBF24] hover:text-[#172554] text-white shadow-lg transition-all"
-            >
-              <span>Request a Quote</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Package 2: Single Page Website -->
-        <div class="reveal rounded-3xl p-7 sm:p-9 bg-[#FFF8ED] text-[#242424] border border-orange-200 shadow-sm hover:shadow-lg flex flex-col justify-between">
-          <div>
-            <span class="inline-block text-xs font-extrabold uppercase tracking-wider px-3.5 py-1 rounded-full mb-4 bg-orange-100 text-[#F97316]">
-              One-Page Website
-            </span>
-            <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-[#172554]">Single Page Website</h3>
-            <p class="mt-2.5 text-sm text-slate-600 leading-relaxed">
-              Smooth-scrolling one-page website for salons, gyms, local shops &amp; small businesses establishing their online presence.
-            </p>
-
-            <div class="my-6 p-4 rounded-2xl border bg-white border-orange-200">
-              <div class="font-heading text-2xl font-extrabold text-[#172554]">Request a Quote</div>
-              <p class="text-xs mt-1 text-slate-500">Customized estimate based on your project requirements</p>
-            </div>
-
-            <ul class="space-y-3 text-sm text-slate-700">
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5"></i>
-                <span>All Key Business Sections on One Smooth-Scroll Page</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5"></i>
-                <span>Hero, About, Services, Timings &amp; Contact Flow</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5"></i>
-                <span>Mobile-First Responsive Design</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5"></i>
-                <span>Direct WhatsApp &amp; Click-to-Call Integration</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i data-lucide="check-circle-2" class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5"></i>
-                <span>Domain &amp; Hosting Deployment Guidance</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-8 pt-4">
-            <button
-              type="button"
-              onclick="selectPackage('Single Page Website Development (One-Page)', 'Hello PB Digi Seva, I would like to request a quote for a Single Page Website.')"
-              class="w-full py-4 px-6 rounded-xl font-bold text-sm inline-flex items-center justify-center gap-2 bg-[#172554] hover:bg-[#F97316] text-white transition-all"
-            >
-              <span>Request a Quote</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       9. FAQ ACCORDION
-  ========================================================================= -->
-  <section class="py-16 sm:py-24 bg-[#FFF8ED]">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal text-center">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-[#F97316]">Helpful Answers</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#172554] mt-2">
-          Frequently Asked Questions
-        </h2>
-        <p class="mt-4 text-base text-slate-600">
-          Everything you need to know about website development, domain, hosting, delivery time, maintenance, and pricing.
-        </p>
-      </div>
-
-      <div id="faq-container" class="mt-10 space-y-4"></div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       10. CONTACT SECTION (FORM + WHATSAPP + DIRECT CALL FALLBACK)
-  ========================================================================= -->
-  <section id="contact" class="py-16 sm:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="reveal text-center max-w-3xl mx-auto">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-[#F97316]">Get In Touch</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-[#172554] mt-2">
-          Start Your Business Website Today
-        </h2>
-        <p class="mt-4 text-base text-slate-600">
-          Submit your enquiry below to send your details directly to our WhatsApp, or call us directly with one tap.
-        </p>
-      </div>
-
-      <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <!-- Left Contact Info Card -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="rounded-3xl bg-[#172554] text-white p-7 sm:p-8 shadow-xl">
-            <h3 class="font-heading text-xl font-extrabold text-white">Direct Contact Options</h3>
-            <p class="text-sm text-slate-300 mt-1.5">
-              Reach PB Digi Seva directly via WhatsApp or phone call.
-            </p>
-
-            <div class="mt-6 space-y-3">
-              <a
-                data-config-wa-default
-                href="https://wa.me/919876543210"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full inline-flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-2xl shadow-lg transition-all"
-              >
-                <i data-lucide="message-circle" class="w-5 h-5"></i>
-                <span>Enquire on WhatsApp</span>
-              </a>
-
-              <a
-                data-config-phone-href
-                href="tel:+919876543210"
-                class="w-full inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold py-3.5 px-6 rounded-2xl transition-all"
-              >
-                <i data-lucide="phone" class="w-5 h-5 text-[#FBBF24]"></i>
-                <span>Call Us: <span data-config-phone-text>+91 98765 43210</span></span>
-              </a>
-            </div>
-
-            <div class="mt-8 space-y-5 pt-6 border-t border-white/15">
-              <div class="flex items-start gap-3.5">
-                <div class="w-10 h-10 rounded-xl bg-white/10 text-[#FBBF24] flex items-center justify-center shrink-0">
-                  <i data-lucide="phone" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Phone / WhatsApp</div>
-                  <a data-config-phone-href href="tel:+919876543210" class="text-sm sm:text-base font-bold text-white hover:text-[#FBBF24]">
-                    <span data-config-phone-text>+91 98765 43210</span>
-                  </a>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3.5">
-                <div class="w-10 h-10 rounded-xl bg-white/10 text-[#FBBF24] flex items-center justify-center shrink-0">
-                  <i data-lucide="mail" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Email</div>
-                  <a data-config-email-href href="mailto:hello@pbdigiseva.in" class="text-sm sm:text-base font-bold text-white hover:text-[#FBBF24] break-all">
-                    <span data-config-email-text>hello@pbdigiseva.in</span>
-                  </a>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3.5">
-                <div class="w-10 h-10 rounded-xl bg-white/10 text-[#FBBF24] flex items-center justify-center shrink-0">
-                  <i data-lucide="map-pin" class="w-5 h-5"></i>
-                </div>
-                <div>
-                  <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Service Region</div>
-                  <div data-config-location class="text-sm sm:text-base font-bold text-white">West Bengal, India</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="rounded-2xl bg-[#FFF8ED] border border-orange-200 p-5 flex items-start gap-3">
-            <i data-lucide="shield-check" class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5"></i>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              <strong class="text-[#172554]">Instant WhatsApp &amp; Direct Call:</strong> Submitting the form automatically opens WhatsApp with your formatted enquiry. If WhatsApp is not installed on your device, tap <strong>Call Us Directly</strong> to reach us immediately.
-            </p>
-          </div>
-        </div>
-
-        <!-- Right Enquiry Form -->
-        <div class="lg:col-span-7">
-          <div class="rounded-3xl bg-[#FFF8ED] border border-orange-200/80 p-6 sm:p-9 shadow-sm">
-            <h3 class="font-heading text-xl sm:text-2xl font-extrabold text-[#172554]">
-              Request a Website Quote
-            </h3>
-            <p class="text-sm text-slate-600 mt-1">
-              Fill in your details and choose your website type below.
-            </p>
-
-            <!-- Post-Submit Fallback Confirmation Card -->
-            <div id="enquiry-success-card" class="hidden mt-6 p-5 sm:p-6 rounded-2xl bg-white border-2 border-emerald-500 shadow-lg">
-              <div class="flex items-start gap-3">
-                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-                </div>
-                <div class="flex-1">
-                  <h4 class="font-heading font-extrabold text-base sm:text-lg text-[#172554]">
-                    Your Enquiry is Ready!
-                  </h4>
-                  <p class="text-sm text-slate-600 mt-1 leading-relaxed">
-                    Thank you, <strong id="confirm-client-name">Client</strong>. We opened WhatsApp with your enquiry details. If WhatsApp did not open automatically, use any option below:
-                  </p>
-
-                  <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <a
-                      id="retry-whatsapp-btn"
-                      href="#"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm py-3.5 px-4 rounded-xl shadow-sm transition-colors"
-                    >
-                      <i data-lucide="message-circle" class="w-4 h-4"></i>
-                      <span>Open WhatsApp Again</span>
-                    </a>
-
-                    <a
-                      data-config-phone-href
-                      href="tel:+919876543210"
-                      class="inline-flex items-center justify-center gap-2 bg-[#172554] hover:bg-[#F97316] text-white font-bold text-sm py-3.5 px-4 rounded-xl shadow-sm transition-colors"
-                    >
-                      <i data-lucide="phone" class="w-4 h-4 text-[#FBBF24]"></i>
-                      <span>Call Us Directly (<span data-config-phone-text>+91 98765 43210</span>)</span>
-                    </a>
-                  </div>
-
-                  <div class="mt-3">
-                    <button
-                      id="copy-enquiry-btn"
-                      type="button"
-                      onclick="copyEnquiryText()"
-                      class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FFF8ED] hover:bg-orange-100 text-[#172554] font-semibold text-xs py-2.5 px-4 rounded-xl border border-orange-200 transition-colors"
-                    >
-                      <i data-lucide="copy" class="w-4 h-4 text-[#F97316]"></i>
-                      <span id="copy-enquiry-label">Copy Enquiry Details</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <form id="enquiry-form" novalidate class="mt-6 space-y-5">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label for="field-name" class="block text-xs font-bold uppercase tracking-wider text-[#172554] mb-1.5">
-                    Name *
-                  </label>
-                  <input
-                    id="field-name"
-                    type="text"
-                    placeholder="Your full name"
-                    class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm text-[#242424] focus:outline-none focus:ring-2 focus:ring-[#F97316]"
-                  />
-                  <p id="err-name" class="hidden text-xs text-rose-600 font-medium mt-1"></p>
-                </div>
-
-                <div>
-                  <label for="field-business" class="block text-xs font-bold uppercase tracking-wider text-[#172554] mb-1.5">
-                    Business Name *
-                  </label>
-                  <input
-                    id="field-business"
-                    type="text"
-                    placeholder="Your shop, clinic, or company name"
-                    class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm text-[#242424] focus:outline-none focus:ring-2 focus:ring-[#F97316]"
-                  />
-                  <p id="err-business" class="hidden text-xs text-rose-600 font-medium mt-1"></p>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label for="field-phone" class="block text-xs font-bold uppercase tracking-wider text-[#172554] mb-1.5">
-                    Phone *
-                  </label>
-                  <input
-                    id="field-phone"
-                    type="tel"
-                    placeholder="Your phone / WhatsApp number"
-                    class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm text-[#242424] focus:outline-none focus:ring-2 focus:ring-[#F97316]"
-                  />
-                  <p id="err-phone" class="hidden text-xs text-rose-600 font-medium mt-1"></p>
-                </div>
-
-                <div>
-                  <label for="field-email" class="block text-xs font-bold uppercase tracking-wider text-[#172554] mb-1.5">
-                    Email (Optional)
-                  </label>
-                  <input
-                    id="field-email"
-                    type="email"
-                    placeholder="you@example.com"
-                    class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm text-[#242424] focus:outline-none focus:ring-2 focus:ring-[#F97316]"
-                  />
-                  <p id="err-email" class="hidden text-xs text-rose-600 font-medium mt-1"></p>
-                </div>
-              </div>
-
-              <!-- Strictly Two Website Types -->
-              <div>
-                <label for="field-type" class="block text-xs font-bold uppercase tracking-wider text-[#172554] mb-1.5">
-                  Website Type *
-                </label>
-                <select
-                  id="field-type"
-                  class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm font-medium text-[#242424] focus:outline-none focus:ring-2 focus:ring-[#F97316]"
-                >
-                  <option value="Business Website Development (Multi-Page)">Business Website Development (Multi-Page)</option>
-                  <option value="Single Page Website Development (One-Page)">Single Page Website Development (One-Page)</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="field-details" class="block text-xs font-bold uppercase tracking-wider text-[#172554] mb-1.5">
-                  Project Details *
-                </label>
-                <textarea
-                  id="field-details"
-                  rows="4"
-                  placeholder="Tell us about your business (e.g., Pharmacy, Clinic, Salon, Restaurant, Shop) and what you need on your website..."
-                  class="w-full px-4 py-3 rounded-xl bg-white border border-orange-200 text-sm text-[#242424] focus:outline-none focus:ring-2 focus:ring-[#F97316]"
-                ></textarea>
-                <p id="err-details" class="hidden text-xs text-rose-600 font-medium mt-1"></p>
-              </div>
-
-              <div class="pt-2 flex flex-col sm:flex-row gap-3.5">
-                <button
-                  type="submit"
-                  class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F97316] to-orange-600 hover:from-orange-600 hover:to-[#172554] text-white font-bold text-sm py-4 px-6 rounded-xl shadow-md transition-all"
-                >
-                  <i data-lucide="send" class="w-4 h-4"></i>
-                  <span>Submit &amp; Send on WhatsApp</span>
-                </button>
-
-                <a
-                  data-config-phone-href
-                  href="tel:+919876543210"
-                  class="flex-1 inline-flex items-center justify-center gap-2 bg-[#172554] hover:bg-blue-950 text-white font-bold text-sm py-4 px-6 rounded-xl shadow-md transition-all"
-                >
-                  <i data-lucide="phone" class="w-4 h-4 text-[#FBBF24]"></i>
-                  <span>Or Call <span data-config-phone-text>+91 98765 43210</span></span>
-                </a>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================
-       11. FOOTER
-  ========================================================================= -->
-  <footer class="bg-[#172554] text-white pt-16 pb-24 sm:pb-12 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
-        <div class="lg:col-span-4">
-          <div class="font-heading font-extrabold text-2xl text-white">
-            PB <span class="text-[#F97316]">Digi</span> Seva
-          </div>
-          <p class="mt-2 text-sm font-bold text-[#FBBF24]">Grow Your Business Digitally.</p>
-          <p class="mt-3 text-sm text-slate-300 leading-relaxed max-w-sm">
-            Dedicated website development agency building Business Websites (Multi-Page) and Single Page Websites for local businesses.
-          </p>
-
-          <div class="mt-6 flex items-center gap-3">
-            <a
-              data-config-fb
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="PB Digi Seva Facebook"
-              class="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#F97316] text-white flex items-center justify-center transition-colors"
-            >
-              <i data-lucide="facebook" class="w-5 h-5"></i>
-            </a>
-            <a
-              data-config-ig
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="PB Digi Seva Instagram"
-              class="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#F97316] text-white flex items-center justify-center transition-colors"
-            >
-              <i data-lucide="instagram" class="w-5 h-5"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-2">
-          <h4 class="font-heading text-sm font-extrabold uppercase tracking-wider text-[#FBBF24]">Quick Links</h4>
-          <ul class="mt-4 space-y-2.5 text-sm text-slate-300">
-            <li><a href="#home" class="hover:text-[#F97316] transition-colors">Home</a></li>
-            <li><a href="#about" class="hover:text-[#F97316] transition-colors">About</a></li>
-            <li><a href="#services" class="hover:text-[#F97316] transition-colors">Services</a></li>
-            <li><a href="#portfolio" class="hover:text-[#F97316] transition-colors">Portfolio</a></li>
-            <li><a href="#pricing" class="hover:text-[#F97316] transition-colors">Pricing</a></li>
-            <li><a href="#contact" class="hover:text-[#F97316] transition-colors">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="lg:col-span-3">
-          <h4 class="font-heading text-sm font-extrabold uppercase tracking-wider text-[#FBBF24]">Our Two Services</h4>
-          <ul class="mt-4 space-y-2.5 text-sm text-slate-300">
-            <li>
-              <button type="button" onclick="openServiceModal('business')" class="text-left hover:text-[#F97316] transition-colors">
-                Business Website Development
-              </button>
-            </li>
-            <li>
-              <button type="button" onclick="openServiceModal('single')" class="text-left hover:text-[#F97316] transition-colors">
-                Single Page Website Development
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        <div class="lg:col-span-3">
-          <h4 class="font-heading text-sm font-extrabold uppercase tracking-wider text-[#FBBF24]">Contact</h4>
-          <ul class="mt-4 space-y-3 text-sm text-slate-300">
-            <li class="flex items-start gap-2.5">
-              <i data-lucide="phone" class="w-4 h-4 text-[#F97316] shrink-0 mt-1"></i>
-              <a data-config-phone-href href="tel:+919876543210" class="hover:text-white">
-                <span data-config-phone-text>+91 98765 43210</span>
-              </a>
-            </li>
-            <li class="flex items-start gap-2.5">
-              <i data-lucide="mail" class="w-4 h-4 text-[#F97316] shrink-0 mt-1"></i>
-              <a data-config-email-href href="mailto:hello@pbdigiseva.in" class="hover:text-white break-all">
-                <span data-config-email-text>hello@pbdigiseva.in</span>
-              </a>
-            </li>
-            <li class="flex items-start gap-2.5">
-              <i data-lucide="map-pin" class="w-4 h-4 text-[#F97316] shrink-0 mt-1"></i>
-              <span data-config-location>West Bengal, India</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-        <p>&copy; <span id="current-year"></span> PB Digi Seva. All rights reserved.</p>
-        <p>Business Websites &amp; Single Page Websites for Local Businesses.</p>
-      </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-center text-xs text-slate-400">
+      © 2026 PB Digi Seva. All rights reserved.
     </div>
   </footer>
 
-  <!-- ========================================================================
-       12. FLOATING CALL NOW & WHATSAPP CHAT QUICK-ACTION BUTTONS
-  ========================================================================= -->
-  <div class="fixed bottom-4 right-4 z-30 flex items-center gap-2.5">
-    <a
-      data-config-phone-href
-      href="tel:+919876543210"
-      aria-label="Call PB Digi Seva Now"
-      class="inline-flex items-center gap-2 bg-[#172554] hover:bg-[#F97316] text-white font-bold text-xs sm:text-sm px-4 py-3.5 rounded-full shadow-xl border border-white/15 transition-all hover:scale-105"
-    >
-      <i data-lucide="phone" class="w-4 h-4 sm:w-5 sm:h-5 text-[#FBBF24]"></i>
-      <span>Call Now</span>
+  <!-- Floating Mobile Action Bar -->
+  <div class="fixed bottom-4 left-4 right-4 z-40 sm:hidden flex gap-2.5">
+    <a href="tel:+918100177365" class="flex-1 bg-brand-navy text-white font-bold text-xs py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2 border border-white/10">
+      <span>📞 Call Now</span>
     </a>
-
-    <a
-      data-config-wa-default
-      href="https://wa.me/919876543210"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat on WhatsApp with PB Digi Seva"
-      class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm px-4 py-3.5 rounded-full shadow-xl transition-transform hover:scale-105"
-    >
-      <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-      <span>WhatsApp Chat</span>
+    <a href="https://wa.me/918100177365?text=Hello%20PB%20Digi%20Seva%2C%20I%20want%20a%20website%20for%20my%20business." target="_blank" class="flex-1 bg-emerald-600 text-white font-bold text-xs py-3.5 rounded-2xl shadow-xl flex items-center justify-center gap-2">
+      <span>💬 WhatsApp Chat</span>
     </a>
   </div>
 
-  <!-- ========================================================================
-       SERVICE DETAILS MODAL
-  ========================================================================= -->
-  <div id="service-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#172554]/70 backdrop-blur-xs">
-    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-orange-100 max-h-[90vh] overflow-y-auto">
-      <div class="flex items-start justify-between gap-4">
+  <!-- Interactive Demo Modal -->
+  <div id="demo-modal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+      <div class="px-5 py-3.5 bg-brand-navy text-white flex items-center justify-between">
         <div>
-          <span id="srv-modal-badge" class="text-xs font-extrabold uppercase tracking-wider text-[#F97316]"></span>
-          <h3 id="srv-modal-title" class="font-heading text-2xl font-extrabold text-[#172554] mt-1"></h3>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-brand-gold">Live Interactive Sample</span>
+          <h4 id="demo-modal-title" class="font-display font-bold text-sm">Website Demo</h4>
         </div>
-        <button type="button" onclick="closeServiceModal()" class="p-2 rounded-xl bg-slate-100 hover:bg-orange-100 text-[#172554]" aria-label="Close Modal">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <button onclick="closeDemoModal()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-sm font-bold">✕</button>
       </div>
-      <p id="srv-modal-desc" class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed"></p>
-      <div class="mt-6 p-4 rounded-2xl bg-[#FFF8ED] border border-orange-200">
-        <div id="srv-modal-list-label" class="text-xs font-extrabold uppercase tracking-wider text-[#172554] mb-3"></div>
-        <ul id="srv-modal-list" class="space-y-2.5 text-sm text-slate-700"></ul>
-      </div>
-      <p id="srv-modal-ideal" class="mt-4 text-xs text-slate-500"></p>
-      <div class="mt-7 flex flex-col sm:flex-row gap-3">
-        <button id="srv-modal-cta" type="button" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F97316] to-orange-600 text-white font-bold text-sm py-3.5 px-5 rounded-xl shadow-md">
-          <span>Request This Website</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-        <button type="button" onclick="closeServiceModal()" class="py-3.5 px-5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm">
-          Close
-        </button>
+      <div id="demo-modal-body" class="p-4 sm:p-5 overflow-y-auto bg-slate-100 flex-1"></div>
+      <div class="px-5 py-3 bg-white border-t border-slate-200 flex items-center justify-between gap-3">
+        <span class="text-[11px] font-semibold text-slate-500">Want a website like this?</span>
+        <a href="#contact" onclick="closeDemoModal()" class="gradient-cta text-white text-xs font-bold px-4 py-2 rounded-xl">Order Similar Site →</a>
       </div>
     </div>
   </div>
 
-  <!-- ========================================================================
-       DEMO PROJECT PREVIEW MODAL
-  ========================================================================= -->
-  <div id="demo-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#172554]/75 backdrop-blur-xs">
-    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-orange-100 max-h-[90vh] overflow-y-auto">
-      <div id="demo-modal-header" class="bg-gradient-to-r from-[#172554] to-blue-900 p-6 sm:p-7 text-white">
-        <div class="flex items-center justify-between gap-4">
-          <span id="demo-modal-badge" class="px-3 py-1 rounded-full bg-[#FBBF24] text-[#172554] text-xs font-extrabold uppercase tracking-wider"></span>
-          <button type="button" onclick="closeDemoModal()" class="p-2 rounded-xl bg-white/15 hover:bg-white/25 text-white" aria-label="Close Demo Modal">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-        </div>
-        <h3 id="demo-modal-title" class="font-heading text-2xl sm:text-3xl font-extrabold mt-4"></h3>
-        <p id="demo-modal-service" class="text-sm text-white/90 mt-1"></p>
-      </div>
-
-      <div class="p-6 sm:p-8">
-        <div class="rounded-2xl border-2 border-slate-200 bg-[#FFF8ED] p-4 sm:p-5 mb-6">
-          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-orange-200">
-            <span id="demo-modal-brand" class="font-heading font-extrabold text-sm text-[#172554]"></span>
-            <div id="demo-modal-pills" class="flex flex-wrap gap-1.5"></div>
-          </div>
-          <div id="demo-modal-headline" class="text-base sm:text-lg font-heading font-bold text-[#172554]"></div>
-          <div class="mt-3">
-            <span id="demo-modal-cta-pill" class="inline-block text-xs font-bold bg-[#F97316] text-white px-3.5 py-1.5 rounded-lg"></span>
-          </div>
-        </div>
-
-        <h4 class="font-heading font-bold text-base text-[#172554]">Demo Project Overview</h4>
-        <p id="demo-modal-summary" class="mt-2 text-sm text-slate-600 leading-relaxed"></p>
-
-        <div id="demo-modal-features" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
-
-        <div class="mt-7 pt-5 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
-          <button id="demo-modal-request" type="button" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#F97316] to-orange-600 text-white font-bold text-sm py-3.5 px-5 rounded-xl shadow-md">
-            <span>Build a Similar Website</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </button>
-          <button type="button" onclick="closeDemoModal()" class="py-3.5 px-5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm">
-            Close Preview
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================
-       JAVASCRIPT: CONFIG, DATA, INTERACTIVITY & WHATSAPP ENQUIRY
-  ========================================================================= -->
   <script>
-    /**
-     * ========================================================================
-     * EDITABLE BUSINESS CONFIGURATION (EDIT YOUR REAL CONTACT DETAILS HERE)
-     * ========================================================================
-     */
-    const CONFIG = {
-      businessName: 'PB Digi Seva',
-      tagline: 'Grow Your Business Digitally.',
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
 
-      // REPLACE WITH YOUR ACTUAL PHONE NUMBER (Display & Callable Link)
-      phoneDisplay: '+91 98765 43210',
-      phoneHref: 'tel:+919876543210',
-
-      // REPLACE WITH YOUR WHATSAPP NUMBER (Country code + 10 digits, NO '+' or spaces)
-      whatsappNumber: '919876543210',
-      whatsappDefaultMessage:
-        'Hello PB Digi Seva! I visited your website and would like to enquire about a website for my business.',
-
-      // REPLACE WITH YOUR OFFICIAL EMAIL ADDRESS
-      email: 'hello@pbdigiseva.in',
-
-      // REPLACE WITH YOUR CITY / REGION
-      location: 'West Bengal, India',
-
-      // REPLACE WITH YOUR ACTUAL FACEBOOK & INSTAGRAM LINKS
-      facebookUrl: 'https://facebook.com',
-      instagramUrl: 'https://instagram.com'
-    };
-
-    const SERVICES = {
-      business: {
-        badge: 'Service 01 • Multi-Page Website',
-        title: 'Business Website Development',
-        selectValue: 'Business Website Development (Multi-Page)',
-        desc: 'A structured multi-page website featuring dedicated Home, About, Services, Gallery, and Contact pages. Designed to give local businesses complete credibility and clear navigation across mobile and desktop screens.',
-        listLabel: 'Included Core Pages:',
-        items: [
-          'Home Page — Strong welcome banner, business highlights & quick call-to-action',
-          'About Page — Your business background, values & customer trust factors',
-          'Services Page — Detailed presentation of your treatments, menu, or services',
-          'Gallery Page — Clean visual showcase of your facility, store, or work',
-          'Contact Page — Enquiry form, click-to-call, WhatsApp chat & location map'
-        ],
-        ideal: 'Best Suited For: Medical Pharmacies, Diagnostic Centres, Clinics, Restaurants, Hotels & Growing Local Businesses.'
-      },
-      single: {
-        badge: 'Service 02 • One-Page Website',
-        title: 'Single Page Website Development',
-        selectValue: 'Single Page Website Development (One-Page)',
-        desc: 'A streamlined one-page website that presents all essential business information in one smooth scrolling experience—helping visitors learn what you offer and contact you in seconds.',
-        listLabel: 'Included Smooth-Scroll Sections:',
-        items: [
-          'Hero Banner — Clear headline, overview & instant Call / WhatsApp buttons',
-          'About Section — Concise introduction to your business or practice',
-          'Services Grid — Scannable cards highlighting your key offerings',
-          'Timings & Location — Opening hours, address & key highlights',
-          'Direct Contact & WhatsApp — Quick enquiry form & one-tap WhatsApp chat'
-        ],
-        ideal: 'Best Suited For: Salons, Gyms, Local Shops, Clinics & Small Businesses Starting Online.'
-      }
-    };
-
-    const PORTFOLIO_DEMOS = [
-      {
-        title: 'Pharmacy Business Website',
-        category: 'Multi-Page Demo',
-        serviceType: 'Business Website Development (Multi-Page)',
-        gradient: 'from-emerald-700 to-teal-800',
-        tagClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-        icon: 'stethoscope',
-        brand: 'CarePlus Pharmacy (Demo)',
-        headline: 'Your Trusted Neighborhood Pharmacy & Health Store',
-        cta: 'Enquire on WhatsApp',
-        pages: ['Home', 'About', 'Services', 'Gallery', 'Contact'],
-        summary:
-          'Multi-page pharmacy website concept featuring Home, About, Medicines & Essentials, Store Gallery, and Contact pages with one-tap WhatsApp enquiry.',
-        features: [
-          'Pharmacy Timings & Emergency Contact Bar',
-          'Medicine & Health Essentials Overview',
-          'One-Tap WhatsApp Prescription Enquiry',
-          'Mobile-First Layout & Location Map'
-        ]
-      },
-      {
-        title: 'Diagnostic Centre Business Website',
-        category: 'Multi-Page Demo',
-        serviceType: 'Business Website Development (Multi-Page)',
-        gradient: 'from-[#172554] to-indigo-900',
-        tagClass: 'bg-blue-50 text-[#172554] border-blue-200',
-        icon: 'activity',
-        brand: 'MetroLife Diagnostics (Demo)',
-        headline: 'Reliable Pathology & Preventive Health Checkups',
-        cta: 'Book Home Collection',
-        pages: ['Home', 'About', 'Services', 'Gallery', 'Contact'],
-        summary:
-          'Multi-page diagnostic centre website concept showcasing health checkup packages, lab equipment gallery, and home sample collection enquiry.',
-        features: [
-          'Health Checkup & Pathology Test Pages',
-          'Home Sample Collection Enquiry Flow',
-          'Lab & Facility Photo Gallery',
-          'Direct Phone Call & WhatsApp Desk'
-        ]
-      },
-      {
-        title: 'Restaurant Business Website',
-        category: 'Multi-Page Demo',
-        serviceType: 'Business Website Development (Multi-Page)',
-        gradient: 'from-orange-600 to-red-700',
-        tagClass: 'bg-orange-50 text-orange-800 border-orange-200',
-        icon: 'utensils',
-        brand: 'Sonar Bangla Dining (Demo)',
-        headline: 'Authentic Cuisine & Warm Family Hospitality',
-        cta: 'Reserve a Table',
-        pages: ['Home', 'About', 'Services', 'Gallery', 'Contact'],
-        summary:
-          'Inviting multi-page restaurant and hotel dining website concept with specialty menu sections, dining gallery, table enquiry, and directions.',
-        features: [
-          'Food Menu & Catering Services Page',
-          'Dining Ambience & Dishes Photo Gallery',
-          'Table Reservation & Event Enquiry',
-          'Opening Hours & Google Map Directions'
-        ]
-      },
-      {
-        title: 'Salon Business Website',
-        category: 'Multi-Page Demo',
-        serviceType: 'Business Website Development (Multi-Page)',
-        gradient: 'from-rose-600 to-amber-600',
-        tagClass: 'bg-rose-50 text-rose-800 border-rose-200',
-        icon: 'scissors',
-        brand: 'Aura Glow Salon (Demo)',
-        headline: 'Modern Hair, Skincare & Bridal Studio',
-        cta: 'Book Appointment',
-        pages: ['Home', 'About', 'Services', 'Gallery', 'Contact'],
-        summary:
-          'Stylish multi-page salon website concept highlighting hair, skin, and bridal packages, studio lookbook gallery, and WhatsApp appointment booking.',
-        features: [
-          'Hair, Skincare & Bridal Packages',
-          'Lookbook & Studio Photo Gallery',
-          'Instant WhatsApp Appointment Request',
-          'Optimized for Mobile Visitors'
-        ]
-      },
-      {
-        title: 'Local Shop Business Website',
-        category: 'Multi-Page Demo',
-        serviceType: 'Business Website Development (Multi-Page)',
-        gradient: 'from-amber-600 to-orange-600',
-        tagClass: 'bg-amber-50 text-amber-900 border-amber-200',
-        icon: 'store',
-        brand: 'Bengal Traders & Store (Demo)',
-        headline: 'Quality Products & Trusted Service in Your Area',
-        cta: 'Enquire Now',
-        pages: ['Home', 'About', 'Services', 'Gallery', 'Contact'],
-        summary:
-          'Clean multi-page website concept for local retail stores and showrooms to showcase product categories, store photos, and direct contact options.',
-        features: [
-          'Organized Product Categories & Brands',
-          'Showroom & Display Photo Gallery',
-          'Direct Phone & WhatsApp Availability Check',
-          'Store Address & Timings Display'
-        ]
-      },
-      {
-        title: 'Single Page Business Website',
-        category: 'One-Page Demo',
-        serviceType: 'Single Page Website Development (One-Page)',
-        gradient: 'from-[#F97316] to-[#172554]',
-        tagClass: 'bg-orange-100 text-[#172554] border-orange-300',
-        icon: 'mouse-pointer-click',
-        brand: 'PrimeFit Studio (One-Page Demo)',
-        headline: 'Everything Your Customers Need on One Smooth Page',
-        cta: 'Get Started Today',
-        pages: ['Hero', 'About', 'Services', 'Highlights', 'Contact'],
-        summary:
-          'Sleek one-page website concept for gyms, clinics, or small businesses presenting About, Services, Highlights, and Contact in one smooth scroll.',
-        features: [
-          'Smooth-Scroll Section Navigation',
-          'Fast Loading on Mobile Connections',
-          'Direct Call & WhatsApp Action Flow',
-          'Compact & Easy-to-Browse Design'
-        ]
-      }
-    ];
-
-    const FAQS = [
-      {
-        q: 'How does the website development process work?',
-        a: 'We follow 5 clear steps: (1) Requirement Discussion to understand your business, (2) Design planning for your layout, (3) Development of your responsive website, (4) Testing across mobile phones and desktops, and (5) Website Launch so your business is live online.'
-      },
-      {
-        q: 'What is a domain name and how do I get one?',
-        a: 'A domain name is your website address on the internet (for example, www.yourbusiness.in or .com). If you do not own a domain yet, we guide you step-by-step on choosing and registering one in your own business name.'
-      },
-      {
-        q: 'Do I need web hosting for my website?',
-        a: 'Yes, web hosting is the secure online space where your website files live so visitors can access your website 24/7. We assist you in setting up fast, reliable hosting suited for your Business Website or Single Page Website.'
-      },
-      {
-        q: 'How long does website delivery take?',
-        a: 'Delivery time depends on the website type and how quickly your business text and photos are ready. A Single Page Website typically takes around 3 to 5 working days, while a 5-page Business Website generally takes 7 to 12 working days.'
-      },
-      {
-        q: 'What about website maintenance and future updates?',
-        a: 'Your website is built with clean, well-organized code so updating phone numbers, timings, service lists, or gallery photos is straightforward. Whenever you need updates or technical maintenance after launch, our team is ready to support you.'
-      },
-      {
-        q: 'How is website pricing calculated?',
-        a: 'Instead of fixed one-size-fits-all rates, we provide a customized quote based on whether you choose a Single Page Website or a Multi-Page Business Website, the number of pages/sections needed, and your content readiness. Request a quote for an accurate, affordable estimate.'
-      }
-    ];
-
-    let lastFormattedEnquiry = '';
-
-    function buildWhatsAppUrl(customText) {
-      const digits = CONFIG.whatsappNumber.replace(/[^0-9]/g, '');
-      const text = encodeURIComponent(customText || CONFIG.whatsappDefaultMessage);
-      return `https://wa.me/${digits}?text=${text}`;
-    }
-
-    function applyConfigToDOM() {
-      document.querySelectorAll('[data-config-phone-text]').forEach((el) => {
-        el.textContent = CONFIG.phoneDisplay;
-      });
-      document.querySelectorAll('[data-config-phone-href]').forEach((el) => {
-        el.setAttribute('href', CONFIG.phoneHref);
-      });
-      document.querySelectorAll('[data-config-wa-default]').forEach((el) => {
-        el.setAttribute('href', buildWhatsAppUrl());
-      });
-      document.querySelectorAll('[data-config-email-text]').forEach((el) => {
-        el.textContent = CONFIG.email;
-      });
-      document.querySelectorAll('[data-config-email-href]').forEach((el) => {
-        el.setAttribute('href', `mailto:${CONFIG.email}`);
-      });
-      document.querySelectorAll('[data-config-location]').forEach((el) => {
-        el.textContent = CONFIG.location;
-      });
-      document.querySelectorAll('[data-config-fb]').forEach((el) => {
-        el.setAttribute('href', CONFIG.facebookUrl);
-      });
-      document.querySelectorAll('[data-config-ig]').forEach((el) => {
-        el.setAttribute('href', CONFIG.instagramUrl);
-      });
-      const yearEl = document.getElementById('current-year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-    }
-
-    // Hero Interactive Layout Tab Switcher
-    function switchHeroTab(tab) {
-      const multiBtn = document.getElementById('tab-multipage');
-      const singleBtn = document.getElementById('tab-singlepage');
-      const multiPanel = document.getElementById('hero-panel-multipage');
-      const singlePanel = document.getElementById('hero-panel-singlepage');
-
-      if (tab === 'multipage') {
-        multiBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#172554] text-white shadow-xs';
-        singleBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-[#172554]';
-        multiPanel.classList.remove('hidden');
-        singlePanel.classList.add('hidden');
+    // Hero Preview Switcher
+    function switchHeroPreview(type) {
+      const multi = document.getElementById('preview-multi');
+      const single = document.getElementById('preview-single');
+      const tabMulti = document.getElementById('tab-multi');
+      const tabSingle = document.getElementById('tab-single');
+      if (type === 'multi') {
+        multi.classList.remove('hidden');
+        single.classList.add('hidden');
+        tabMulti.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-brand-navy text-white transition';
+        tabSingle.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-brand-navy transition';
       } else {
-        singleBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#F97316] text-white shadow-xs';
-        multiBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-[#172554]';
-        singlePanel.classList.remove('hidden');
-        multiPanel.classList.add('hidden');
+        single.classList.remove('hidden');
+        multi.classList.add('hidden');
+        tabSingle.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-brand-navy text-white transition';
+        tabMulti.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-brand-navy transition';
       }
     }
 
-    // Render Portfolio Demo Cards
-    function renderPortfolio() {
-      const grid = document.getElementById('portfolio-grid');
-      if (!grid) return;
+    function selectService(serviceName) {
+      const select = document.getElementById('client-service');
+      if (select) select.value = serviceName;
+    }
 
-      grid.innerHTML = PORTFOLIO_DEMOS.map(
-        (demo, idx) => `
-          <div class="reveal rounded-2xl bg-white border border-orange-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group">
-            <div>
-              <div class="relative h-48 bg-gradient-to-br ${demo.gradient} p-5 flex flex-col justify-between text-white">
-                <div class="flex items-center justify-between gap-2">
-                  <span class="px-3 py-1 rounded-full bg-[#FBBF24] text-[#172554] text-[11px] font-extrabold uppercase tracking-wider shadow-xs">
-                    DEMO PROJECT
-                  </span>
-                  <span class="px-2.5 py-1 rounded-lg bg-black/25 text-[11px] font-semibold">
-                    ${demo.category}
-                  </span>
+    // Portfolio Demo Projects with Unique Sector UIs (Zero Personal Numbers)
+    const DEMO_PROJECTS = [
+      {
+        title: "Medical Pharmacy & Clinic",
+        category: "Business Website",
+        tagColor: "bg-emerald-100 text-emerald-800",
+        desc: "Home blood sample collection booking, quick call desks, trusted lab partners, and test packages.",
+        renderDemo: () => `
+          <div class="max-w-sm mx-auto bg-slate-50 rounded-3xl border border-slate-200 shadow-md overflow-hidden text-left font-sans">
+            <div class="bg-white px-4 py-3 flex items-center justify-between border-b border-slate-100">
+              <div>
+                <div class="font-bold text-slate-900 text-sm">CarePlus Clinic &</div>
+                <div class="text-xs font-semibold text-emerald-600">Medical Pharmacy (Demo)</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs">📞</span>
+                <span class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-xs">👤</span>
+              </div>
+            </div>
+            <div class="p-4 space-y-3.5">
+              <div class="rounded-2xl p-4 text-white shadow-sm" style="background: linear-gradient(135deg, #059669, #10b981);">
+                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full mb-1.5">Home Service</span>
+                <h4 class="text-base font-extrabold leading-tight">Home Blood Collection</h4>
+                <div class="inline-flex items-center gap-1 bg-white text-emerald-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full mt-1.5">
+                  🕒 7:00 AM - 12:00 PM
                 </div>
-                <div class="bg-white/15 backdrop-blur-xs border border-white/25 rounded-xl p-3.5 mt-3 group-hover:scale-[1.02] transition-transform">
-                  <div class="flex items-center gap-2 mb-1">
-                    <i data-lucide="${demo.icon}" class="w-4 h-4 text-[#FBBF24]"></i>
-                    <span class="text-xs font-bold">${demo.brand}</span>
+                <p class="text-[11px] text-emerald-50 mt-2">Accurate testing from trusted diagnostic partners. Book a home visit today.</p>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-slate-800 mb-2">Quick Booking</div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="bg-blue-50/80 border border-blue-100 rounded-2xl p-2.5 text-center">
+                    <div class="w-7 h-7 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-xs mb-1">📞</div>
+                    <div class="text-[10px] font-semibold text-slate-600">Call Desk 1</div>
+                    <div class="text-[11px] font-extrabold text-slate-900">+91 98300 00000</div>
                   </div>
-                  <p class="text-[11px] text-white/90 line-clamp-2">${demo.headline}</p>
+                  <div class="bg-emerald-50/80 border border-emerald-100 rounded-2xl p-2.5 text-center">
+                    <div class="w-7 h-7 mx-auto rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs mb-1">📞</div>
+                    <div class="text-[10px] font-semibold text-slate-600">Call Desk 2</div>
+                    <div class="text-[11px] font-extrabold text-slate-900">+91 98300 11111</div>
+                  </div>
                 </div>
               </div>
-              <div class="p-6">
-                <span class="inline-block text-xs font-bold px-3 py-1 rounded-lg border ${demo.tagClass}">
-                  ${demo.category}
-                </span>
-                <h3 class="font-heading text-xl font-bold text-[#172554] mt-3">${demo.title}</h3>
-                <p class="mt-2.5 text-sm text-slate-600 leading-relaxed">${demo.summary}</p>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-bold text-slate-800">Trusted Lab Partners</span>
+                  <span class="text-[10px] font-semibold text-emerald-600">View All</span>
+                </div>
+                <div class="grid grid-cols-3 gap-1.5 text-center">
+                  <div class="bg-white border border-slate-200 rounded-xl p-2"><div class="text-[10px] font-extrabold text-blue-700">METRO</div><div class="text-[8px] text-slate-500">LABORATORY</div></div>
+                  <div class="bg-white border border-slate-200 rounded-xl p-2"><div class="text-[10px] font-extrabold text-teal-700">CARE+</div><div class="text-[8px] text-slate-500">DIAGNOSTICS</div></div>
+                  <div class="bg-white border border-slate-200 rounded-xl p-2"><div class="text-[10px] font-extrabold text-rose-700">PRIME</div><div class="text-[8px] text-slate-500">PATHOLOGY</div></div>
+                </div>
+              </div>
+              <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-3">
+                <div class="flex justify-between items-center">
+                  <span class="font-bold text-slate-900 text-xs">Comprehensive Allergy Profile</span>
+                  <span class="text-[9px] bg-amber-200 text-amber-900 font-bold px-1.5 py-0.5 rounded">FEATURED</span>
+                </div>
+                <p class="text-[10px] text-slate-600 mt-1">Complete screening for food, dust, pollen & environmental allergens.</p>
+                <div class="flex items-center justify-between mt-2">
+                  <span class="text-[10px] text-slate-500">🕒 Report in 24 Hrs</span>
+                  <span class="bg-teal-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">📞 Call to Book</span>
+                </div>
               </div>
             </div>
-            <div class="px-6 pb-6">
-              <button
-                type="button"
-                onclick="openDemoModal(${idx})"
-                class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#FFF8ED] hover:bg-[#172554] text-[#172554] hover:text-white font-bold text-sm border border-orange-200 hover:border-[#172554] transition-all duration-300"
-              >
-                <i data-lucide="eye" class="w-4 h-4"></i>
-                <span>View Demo</span>
-              </button>
+            <div class="bg-white border-t border-slate-200 px-3 py-2 grid grid-cols-4 text-center text-[10px] font-semibold text-slate-500">
+              <div class="text-emerald-700 font-bold">🏠<br/>Home</div>
+              <div>🧪<br/>Lab Tests</div>
+              <div>💓<br/>ECG</div>
+              <div>👤<br/>Profile</div>
             </div>
           </div>
         `
-      ).join('');
-    }
-
-    // Render FAQ Accordion
-    function renderFaqs() {
-      const container = document.getElementById('faq-container');
-      if (!container) return;
-
-      container.innerHTML = FAQS.map(
-        (item, idx) => `
-          <div class="rounded-2xl bg-white border ${idx === 0 ? 'border-[#F97316] shadow-md' : 'border-orange-100'} transition-all overflow-hidden" data-faq-card="${idx}">
-            <button
-              type="button"
-              onclick="toggleFaq(${idx})"
-              class="w-full px-6 py-5 text-left flex items-center justify-between gap-4"
-              aria-expanded="${idx === 0 ? 'true' : 'false'}"
-            >
-              <span class="font-heading font-bold text-base sm:text-lg text-[#172554]">${item.q}</span>
-              <span data-faq-icon="${idx}" class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${idx === 0 ? 'bg-[#F97316] text-white rotate-180' : 'bg-[#FFF8ED] text-[#172554]'}">
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-              </span>
-            </button>
-            <div data-faq-body="${idx}" class="${idx === 0 ? '' : 'hidden'} px-6 pb-5 pt-1 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-orange-50">
-              ${item.a}
+      },
+      {
+        title: "Diagnostic & Pathology Lab",
+        category: "Business Website",
+        tagColor: "bg-teal-100 text-teal-800",
+        desc: "Searchable pathology test packages (CBC, Thyroid, Allergy Profile) with direct call-to-book buttons.",
+        renderDemo: () => `
+          <div class="max-w-sm mx-auto bg-slate-50 rounded-3xl border border-slate-200 shadow-md overflow-hidden text-left font-sans">
+            <div class="bg-white px-4 py-3 flex items-center justify-between border-b border-slate-100">
+              <div>
+                <div class="font-bold text-slate-900 text-sm">Metro Health &</div>
+                <div class="text-xs font-semibold text-teal-600">Diagnostic Centre (Demo)</div>
+              </div>
+              <span class="bg-teal-50 text-teal-700 text-[10px] font-bold px-2.5 py-1 rounded-full">NABL Partner</span>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="font-extrabold text-slate-900 text-sm">Lab Tests & Packages</div>
+              <div class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-400">🔍 Search for 'Thyroid', 'CBC'...</div>
+              <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-3">
+                <span class="text-[9px] bg-amber-200 text-amber-900 font-bold px-2 py-0.5 rounded">MOST BOOKED</span>
+                <div class="font-bold text-slate-900 text-xs mt-1">Complete Blood Count (CBC) & ESR</div>
+                <p class="text-[10px] text-slate-600 mt-0.5">Evaluates overall health and detects anemia & infection.</p>
+                <div class="flex items-center justify-between mt-2">
+                  <span class="text-[10px] text-slate-500">🕒 Report in 12 Hrs</span>
+                  <span class="bg-teal-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">📞 Call to Book</span>
+                </div>
+              </div>
+              <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-3">
+                <span class="text-[9px] bg-orange-200 text-orange-900 font-bold px-2 py-0.5 rounded">FASTING REQ.</span>
+                <div class="font-bold text-slate-900 text-xs mt-1">Thyroid Profile (T3, T4, TSH)</div>
+                <p class="text-[10px] text-slate-600 mt-0.5">Checks thyroid gland function & metabolism levels.</p>
+                <div class="flex items-center justify-between mt-2">
+                  <span class="text-[10px] text-slate-500">🕒 Same Day Report</span>
+                  <span class="bg-teal-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">📞 Call to Book</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white border-t border-slate-200 px-3 py-2 grid grid-cols-4 text-center text-[10px] font-semibold text-slate-500">
+              <div>🏠<br/>Home</div>
+              <div class="text-teal-700 font-bold">🧪<br/>Lab Tests</div>
+              <div>💓<br/>ECG</div>
+              <div>👤<br/>Profile</div>
             </div>
           </div>
         `
-      ).join('');
-    }
-
-    function toggleFaq(index) {
-      FAQS.forEach((_, idx) => {
-        const card = document.querySelector(`[data-faq-card="${idx}"]`);
-        const body = document.querySelector(`[data-faq-body="${idx}"]`);
-        const icon = document.querySelector(`[data-faq-icon="${idx}"]`);
-        const isTarget = idx === index && body.classList.contains('hidden');
-
-        if (isTarget) {
-          body.classList.remove('hidden');
-          card.classList.remove('border-orange-100');
-          card.classList.add('border-[#F97316]', 'shadow-md');
-          icon.className = 'w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 bg-[#F97316] text-white rotate-180';
-        } else {
-          body.classList.add('hidden');
-          card.classList.remove('border-[#F97316]', 'shadow-md');
-          card.classList.add('border-orange-100');
-          icon.className = 'w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 bg-[#FFF8ED] text-[#172554]';
-        }
-      });
-    }
-
-    // Service Modal Functions
-    function openServiceModal(key) {
-      const srv = SERVICES[key];
-      if (!srv) return;
-      document.getElementById('srv-modal-badge').textContent = srv.badge;
-      document.getElementById('srv-modal-title').textContent = srv.title;
-      document.getElementById('srv-modal-desc').textContent = srv.desc;
-      document.getElementById('srv-modal-list-label').textContent = srv.listLabel;
-      document.getElementById('srv-modal-list').innerHTML = srv.items
-        .map(
-          (item) => `
-            <li class="flex items-start gap-2.5">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0 mt-0.5"></i>
-              <span>${item}</span>
-            </li>
-          `
-        )
-        .join('');
-      document.getElementById('srv-modal-ideal').textContent = srv.ideal;
-      document.getElementById('srv-modal-cta').onclick = () => {
-        closeServiceModal();
-        selectPackage(srv.selectValue, `Hello PB Digi Seva, I would like to enquire about ${srv.title}.`);
-      };
-
-      const modal = document.getElementById('service-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      lucide.createIcons();
-    }
-
-    function closeServiceModal() {
-      const modal = document.getElementById('service-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    // Demo Project Modal Functions
-    function openDemoModal(index) {
-      const demo = PORTFOLIO_DEMOS[index];
-      if (!demo) return;
-
-      document.getElementById('demo-modal-header').className = `bg-gradient-to-r ${demo.gradient} p-6 sm:p-7 text-white`;
-      document.getElementById('demo-modal-badge').textContent = `DEMO PROJECT • ${demo.category}`;
-      document.getElementById('demo-modal-title').textContent = demo.title;
-      document.getElementById('demo-modal-service').textContent = `Service Type: ${demo.serviceType}`;
-      document.getElementById('demo-modal-brand').textContent = demo.brand;
-      document.getElementById('demo-modal-pills').innerHTML = demo.pages
-        .map(
-          (pg) =>
-            `<span class="text-[11px] font-bold bg-white text-[#172554] px-2.5 py-0.5 rounded-md border border-orange-200">${pg}</span>`
-        )
-        .join('');
-      document.getElementById('demo-modal-headline').textContent = demo.headline;
-      document.getElementById('demo-modal-cta-pill').textContent = demo.cta;
-      document.getElementById('demo-modal-summary').textContent = demo.summary;
-      document.getElementById('demo-modal-features').innerHTML = demo.features
-        .map(
-          (feat) => `
-            <div class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-[#F97316] shrink-0"></i>
-              <span>${feat}</span>
+      },
+      {
+        title: "Family Restaurant & Cafe",
+        category: "Business Website",
+        tagColor: "bg-orange-100 text-orange-800",
+        desc: "Digital food menu with prices, chef specials, dine-in table booking, and WhatsApp takeaway ordering.",
+        renderDemo: () => `
+          <div class="max-w-sm mx-auto bg-orange-50/40 rounded-3xl border border-orange-200 shadow-md overflow-hidden text-left font-sans">
+            <div class="bg-white px-4 py-3 flex items-center justify-between border-b border-orange-100">
+              <div>
+                <div class="font-bold text-slate-900 text-sm">Spice & Saffron Kitchen</div>
+                <div class="text-xs font-medium text-orange-600">Authentic Bengali & Mughlai Dining</div>
+              </div>
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">● Open</span>
             </div>
-          `
-        )
-        .join('');
+            <div class="p-4 space-y-3.5">
+              <div class="rounded-2xl p-4 text-white shadow-sm" style="background: linear-gradient(135deg, #9a3412, #ea580c);">
+                <span class="inline-block text-[10px] font-bold uppercase bg-white/20 px-2.5 py-0.5 rounded-full mb-1">Dine-In & Takeaway</span>
+                <h4 class="text-base font-extrabold leading-tight">Freshly Cooked Royal Flavours</h4>
+                <p class="text-[11px] text-orange-100 mt-1">Reserve your family table or order directly on WhatsApp.</p>
+                <div class="flex gap-2 mt-2.5">
+                  <span class="bg-white text-orange-800 text-[11px] font-bold px-3 py-1 rounded-xl">🍽️ Book Table</span>
+                  <span class="bg-amber-400 text-slate-950 text-[11px] font-bold px-3 py-1 rounded-xl">💬 Order Now</span>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <div class="text-xs font-bold text-slate-800">Today's Chef Specials</div>
+                <div class="bg-white border border-orange-100 rounded-2xl p-3 flex items-center justify-between">
+                  <div>
+                    <span class="text-[9px] font-bold bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">BESTSELLER</span>
+                    <div class="font-bold text-slate-900 text-xs mt-0.5">Royal Kolkata Mutton Biryani</div>
+                    <div class="text-[10px] text-slate-500">Served with raita & signature masala</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-extrabold text-orange-600 text-sm">₹260</div>
+                    <span class="inline-block mt-1 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-lg">Order</span>
+                  </div>
+                </div>
+                <div class="bg-white border border-orange-100 rounded-2xl p-3 flex items-center justify-between">
+                  <div>
+                    <span class="text-[9px] font-bold bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded">PURE VEG</span>
+                    <div class="font-bold text-slate-900 text-xs mt-0.5">Paneer Tikka & Butter Naan</div>
+                    <div class="text-[10px] text-slate-500">Charcoal grilled cottage cheese & 2 naans</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-extrabold text-orange-600 text-sm">₹195</div>
+                    <span class="inline-block mt-1 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-lg">Order</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white border-t border-orange-100 px-3 py-2 grid grid-cols-4 text-center text-[10px] font-semibold text-slate-500">
+              <div class="text-orange-600 font-bold">🍛<br/>Menu</div>
+              <div>🎟️<br/>Offers</div>
+              <div>🪑<br/>Book Table</div>
+              <div>📍<br/>Location</div>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Unisex Salon & Beauty Studio",
+        category: "Single Page Website",
+        tagColor: "bg-rose-100 text-rose-800",
+        desc: "Bridal & grooming packages, price rate card, bridal gallery, and instant WhatsApp appointment booking.",
+        renderDemo: () => `
+          <div class="max-w-sm mx-auto bg-rose-50/40 rounded-3xl border border-rose-200 shadow-md overflow-hidden text-left font-sans">
+            <div class="bg-white px-4 py-3 flex items-center justify-between border-b border-rose-100">
+              <div class="font-bold text-slate-900 text-sm">Aura Unisex Salon (Demo)</div>
+              <span class="bg-rose-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Book Slot</span>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="rounded-2xl p-4 text-white" style="background: linear-gradient(135deg, #be123c, #e11d48);">
+                <h4 class="text-base font-extrabold">Hair, Skin & Bridal Makeover</h4>
+                <p class="text-[11px] text-rose-100 mt-1">Flat 20% Off on Bridal & Keratin Packages this month.</p>
+              </div>
+              <div class="bg-white rounded-2xl p-3 border border-rose-100 space-y-2 text-xs">
+                <div class="flex justify-between font-bold"><span>Haircut & Styling</span><span class="text-rose-600">₹299</span></div>
+                <div class="flex justify-between font-bold"><span>Cleanup & Detan Facial</span><span class="text-rose-600">₹699</span></div>
+                <div class="flex justify-between font-bold"><span>Party & Bridal Makeup</span><span class="text-rose-600">₹2,499+</span></div>
+              </div>
+              <div class="bg-emerald-600 text-white text-center text-xs font-bold py-2.5 rounded-xl">💬 Book Appointment on WhatsApp</div>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Fitness Gym & Yoga Studio",
+        category: "Single Page Website",
+        tagColor: "bg-indigo-100 text-indigo-800",
+        desc: "Membership plans, morning/evening batch timings, trainer highlights, and free trial class registration.",
+        renderDemo: () => `
+          <div class="max-w-sm mx-auto bg-slate-900 text-white rounded-3xl border border-slate-700 shadow-md overflow-hidden text-left font-sans">
+            <div class="px-4 py-3 flex items-center justify-between border-b border-slate-800">
+              <div class="font-bold text-sm">IronPulse Fitness (Demo)</div>
+              <span class="bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">Free Trial</span>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="bg-slate-800 rounded-2xl p-4 border border-slate-700">
+                <h4 class="text-base font-extrabold text-amber-400">Transform Your Fitness</h4>
+                <p class="text-[11px] text-slate-300 mt-1">AC Gym • Cardio • Weight Training • Certified Coaches</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-center text-xs">
+                <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><div class="text-slate-400 text-[10px]">Monthly</div><div class="font-extrabold text-base text-white">₹799</div></div>
+                <div class="bg-slate-800 p-3 rounded-xl border border-amber-400/50"><div class="text-amber-400 text-[10px]">Quarterly</div><div class="font-extrabold text-base text-white">₹1,999</div></div>
+              </div>
+              <div class="bg-amber-400 text-slate-950 text-center text-xs font-extrabold py-2.5 rounded-xl">📞 Call Desk: +91 98300 00000</div>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: "Retail & Electronics Store",
+        category: "Single Page Website",
+        tagColor: "bg-amber-100 text-amber-900",
+        desc: "Product showcase, festive offers, store location map, and one-tap WhatsApp stock availability check.",
+        renderDemo: () => `
+          <div class="max-w-sm mx-auto bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden text-left font-sans">
+            <div class="bg-brand-navy text-white px-4 py-3 flex items-center justify-between">
+              <div class="font-bold text-sm">Bengal Digital Mart (Demo)</div>
+              <span class="text-[10px] bg-brand-orange px-2 py-0.5 rounded font-bold">EMI Available</span>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3.5">
+                <div class="font-extrabold text-brand-navy text-sm">Mobiles, Laptops & Home Appliances</div>
+                <p class="text-[11px] text-slate-600 mt-1">Authorized dealer with instant exchange & 0% down-payment offers.</p>
+              </div>
+              <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 text-xs space-y-1">
+                <div class="font-bold text-slate-800">Store Timings: 10:00 AM – 9:30 PM</div>
+                <div class="text-slate-500 text-[11px]">Main Market Road • Demo Address</div>
+              </div>
+              <div class="bg-emerald-600 text-white text-center text-xs font-bold py-2.5 rounded-xl">💬 Check Stock on WhatsApp</div>
+            </div>
+          </div>
+        `
+      }
+    ];
 
-      document.getElementById('demo-modal-request').onclick = () => {
-        closeDemoModal();
-        selectPackage(
-          demo.serviceType,
-          `Hello PB Digi Seva, I viewed the "${demo.title}" demo project and would like a similar website for my business.`
-        );
-      };
+    const grid = document.getElementById('portfolio-grid');
+    DEMO_PROJECTS.forEach((proj, idx) => {
+      const card = document.createElement('div');
+      card.className = 'bg-brand-cream rounded-3xl border border-orange-200/80 p-6 flex flex-col justify-between card-shadow transition';
+      card.innerHTML = `
+        <div>
+          <span class="inline-block text-[11px] font-bold px-3 py-1 rounded-full ${proj.tagColor}">${proj.category}</span>
+          <h3 class="font-display font-extrabold text-xl text-brand-navy mt-3">${proj.title}</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">${proj.desc}</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-orange-200/60 flex items-center justify-between">
+          <span class="text-[11px] font-semibold text-slate-500">Mobile & Desktop Ready</span>
+          <button onclick="openDemoModal(${idx})" class="gradient-cta text-white text-xs font-bold px-4 py-2 rounded-xl shadow-sm transition">View Demo →</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
 
-      const modal = document.getElementById('demo-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      lucide.createIcons();
+    function openDemoModal(idx) {
+      const proj = DEMO_PROJECTS[idx];
+      if (!proj) return;
+      document.getElementById('demo-modal-title').textContent = proj.title + ' — ' + proj.category;
+      document.getElementById('demo-modal-body').innerHTML = proj.renderDemo();
+      document.getElementById('demo-modal').classList.remove('hidden');
     }
 
     function closeDemoModal() {
-      const modal = document.getElementById('demo-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      document.getElementById('demo-modal').classList.add('hidden');
     }
 
-    function selectPackage(websiteTypeValue, defaultDetails) {
-      const typeSelect = document.getElementById('field-type');
-      const detailsInput = document.getElementById('field-details');
-      if (typeSelect) typeSelect.value = websiteTypeValue;
-      if (detailsInput && defaultDetails) detailsInput.value = defaultDetails;
+    // WhatsApp Contact Form Submission
+    document.getElementById('enquiry-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('client-name').value.trim();
+      const business = document.getElementById('client-business').value.trim();
+      const phone = document.getElementById('client-phone').value.trim();
+      const service = document.getElementById('client-service').value;
+      const notes = document.getElementById('client-notes').value.trim();
 
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    // Copy Enquiry Text Helper
-    function copyEnquiryText() {
-      if (!lastFormattedEnquiry) return;
-      const label = document.getElementById('copy-enquiry-label');
-      const textarea = document.createElement('textarea');
-      textarea.value = lastFormattedEnquiry;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-
-      if (label) {
-        label.textContent = 'Enquiry Details Copied!';
-        setTimeout(() => {
-          label.textContent = 'Copy Enquiry Details';
-        }, 3000);
-      }
-    }
-
-    // Contact Form Validation & WhatsApp + Call Fallback Handler
-    function setupEnquiryForm() {
-      const form = document.getElementById('enquiry-form');
-      if (!form) return;
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const name = document.getElementById('field-name').value.trim();
-        const business = document.getElementById('field-business').value.trim();
-        const phone = document.getElementById('field-phone').value.trim();
-        const email = document.getElementById('field-email').value.trim();
-        const websiteType = document.getElementById('field-type').value;
-        const details = document.getElementById('field-details').value.trim();
-
-        const errors = {
-          name: !name ? 'Please enter your name.' : '',
-          business: !business ? 'Please enter your business name.' : '',
-          phone:
-            !phone || phone.replace(/[^0-9]/g, '').length < 10
-              ? 'Please enter a valid 10-digit phone number.'
-              : '',
-          email:
-            email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-              ? 'Please enter a valid email address.'
-              : '',
-          details: !details ? 'Please share a few details about your website.' : ''
-        };
-
-        let hasError = false;
-        Object.keys(errors).forEach((key) => {
-          const errEl = document.getElementById(`err-${key}`);
-          if (errors[key]) {
-            hasError = true;
-            errEl.textContent = errors[key];
-            errEl.classList.remove('hidden');
-          } else {
-            errEl.classList.add('hidden');
-          }
-        });
-
-        if (hasError) return;
-
-        lastFormattedEnquiry = [
-          `Hello *${CONFIG.businessName}*! I would like to request a website quote.`,
-          ``,
-          `*Name:* ${name}`,
-          `*Business Name:* ${business}`,
-          `*Phone:* ${phone}`,
-          email ? `*Email:* ${email}` : null,
-          `*Website Type:* ${websiteType}`,
-          `*Project Details:* ${details}`
-        ]
-          .filter(Boolean)
-          .join('\n');
-
-        const waUrl = buildWhatsAppUrl(lastFormattedEnquiry);
-        document.getElementById('confirm-client-name').textContent = name;
-        document.getElementById('retry-whatsapp-btn').setAttribute('href', waUrl);
-
-        const successCard = document.getElementById('enquiry-success-card');
-        successCard.classList.remove('hidden');
-        successCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-        window.open(waUrl, '_blank', 'noopener,noreferrer');
-      });
-    }
-
-    // Mobile Menu Drawer Listeners
-    function setupMobileMenu() {
-      const openBtn = document.getElementById('open-mobile-menu');
-      const closeBtn = document.getElementById('close-mobile-menu');
-      const backdrop = document.getElementById('mobile-drawer-backdrop');
-      const drawer = document.getElementById('mobile-drawer');
-
-      const closeDrawer = () => drawer.classList.add('hidden');
-      const openDrawer = () => drawer.classList.remove('hidden');
-
-      if (openBtn) openBtn.addEventListener('click', openDrawer);
-      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-      if (backdrop) backdrop.addEventListener('click', closeDrawer);
-
-      document.querySelectorAll('.mobile-nav-link').forEach((link) => {
-        link.addEventListener('click', closeDrawer);
-      });
-    }
-
-    // Scroll Reveal Observer
-    function setupScrollReveal() {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    }
-
-    // Initialize Everything on Load
-    window.addEventListener('DOMContentLoaded', () => {
-      renderPortfolio();
-      renderFaqs();
-      applyConfigToDOM();
-      setupMobileMenu();
-      setupEnquiryForm();
-      setupScrollReveal();
-      lucide.createIcons();
+      const msg = `Hello PB Digi Seva! I want to enquire about a website:\n\n• Name: ${name}\n• Business: ${business}\n• Phone: ${phone}\n• Service: ${service}${notes ? '\n• Details: ' + notes : ''}`;
+      window.open(`https://wa.me/918100177365?text=${encodeURIComponent(msg)}`, '_blank');
     });
   </script>
 </body>
 </html>
-```
